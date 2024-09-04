@@ -1,28 +1,37 @@
 <ion-content>
   <ion-title class="ion-padding-top ion-text-center">
     <ion-label>
-      <h1>RegsitrAPP</h1>
+      <h1>RegistrAPP</h1>
     </ion-label>
   </ion-title>
+
   <div class="ion-padding-vertical">
     <ion-card class="ion-text-center">
-        <ion-card-title class="ion-text-center">
-          <ion-label>
-            <h1>Bienvenido</h1>
-          </ion-label>
-        </ion-card-title>
+      <ion-card-title class="ion-text-center">
+        <ion-label>
+          <h1>Bienvenido</h1>
+        </ion-label>
+      </ion-card-title>
+
       <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text">
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
+        <!-- Campo de Usuario con Angular Material -->
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input matInput type="text" [(ngModel)]="login.Usuario">
+        </mat-form-field>
+
+        <!-- Campo de Contraseña con Angular Material -->
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.Password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
       </ion-card-content>
-      <ion-button shape="round">Ingresar</ion-button>
+
+      <!-- Botón de Login -->
+      <ion-button shape="round" (click)="ingresar()">Ingresar</ion-button>
     </ion-card>
   </div>
 </ion-content>
