@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
+import {ChangeDetectionStrategy, signal} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-login',
@@ -122,3 +127,22 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 }
+
+
+/** @title Form field with prefix & suffix */
+@Component({
+  selector: 'form-field-prefix-suffix-example',
+  templateUrl: 'form-field-prefix-suffix-example.html',
+  styleUrl: 'form-field-prefix-suffix-example.css',
+  standalone: true,
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class FormFieldPrefixSuffixExample {
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+}
+
