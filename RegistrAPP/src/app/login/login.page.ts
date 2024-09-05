@@ -54,6 +54,7 @@ export class LoginPage implements OnInit {
     }
   }
 
+
   validateModel(model: any) {
     for (var [key, value] of Object.entries(model)) {
       if (value == '') {

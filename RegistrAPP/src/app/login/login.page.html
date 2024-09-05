@@ -1,7 +1,7 @@
 <ion-content>
   <ion-title class="ion-padding-top ion-text-center">
     <ion-label>
-      <h1>RegistrAPP</h1>
+      <h2>RegistrAPP</h2>
     </ion-label>
   </ion-title>
 
@@ -9,7 +9,7 @@
     <ion-card class="ion-text-center">
       <ion-card-title class="ion-text-center">
         <ion-label>
-          <h1>Bienvenido</h1>
+          <h4>Bienvenido</h4>
         </ion-label>
       </ion-card-title>
 
@@ -21,6 +21,9 @@
         </mat-form-field>
 
         <!-- Campo de Contraseña con Angular Material -->
+      </ion-card-content>
+
+      <ion-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.Password">
@@ -28,6 +31,7 @@
             <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
         </mat-form-field>
+            <p>Olvidaste tu contraseña?</p>
       </ion-card-content>
 
       <!-- Botón de Login -->
