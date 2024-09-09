@@ -10,8 +10,8 @@ import {ToastController } from '@ionic/angular';
 export class ResetPasswordPage implements OnInit {
    // Modelo user que permite obtener y setear información para el login
    resetPassword:any={
-    Usuario:"",
-    Password:""
+    Password:"",
+    ConfirmPassword:""
   }
   // variable para mostrar el campo faltante
   field:string="";
@@ -19,13 +19,10 @@ export class ResetPasswordPage implements OnInit {
   constructor(public toastController: ToastController, private router:Router) {}
   ngOnInit() {}
 
-  cambioContraseña(){
+  cambioContrasena(){
     if(this.validateModel(this.resetPassword)){
       this.router.navigate(['login']);
       this.presentToast("Restablecimiento exitoso!");
-    }
-    else{
-      this.presentToast("Falta: "+this.field);
     }
   }
   /**
@@ -39,10 +36,17 @@ export class ResetPasswordPage implements OnInit {
       if (value=="") {
         // Se asigna el campo faltante
         this.field=key;
+        this.presentToast("Falta: "+this.field);
         // Se retorna false
         return false;
       }
     }
+
+    if (this.resetPassword.Password != this.resetPassword.ConfirmPassword){
+      this.presentToast("Las contraseñas no coinciden.");
+      return false;
+    }
+
     return true;
   }
 
