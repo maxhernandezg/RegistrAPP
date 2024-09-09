@@ -15,6 +15,7 @@ export class ResetPasswordPage implements OnInit {
   }
   // variable para mostrar el campo faltante
   field:string="";
+  hide: boolean = true; // Para manejar la visibilidad de la contraseña
   // Constructor que llama al toastController para su uso
   constructor(public toastController: ToastController, private router:Router) {}
   ngOnInit() {}

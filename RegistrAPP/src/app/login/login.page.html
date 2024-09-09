@@ -13,16 +13,15 @@
         </ion-label>
       </ion-card-title>
 
+<!-- Campo de Usuario con Angular Material -->
       <ion-card-content>
-        <!-- Campo de Usuario con Angular Material -->
         <mat-form-field appearance="fill">
           <mat-label>Usuario</mat-label>
           <input matInput type="text" [(ngModel)]="login.Usuario">
-        </mat-form-field>
-
-        <!-- Campo de Contraseña con Angular Material -->
+        </mat-form-field>  
       </ion-card-content>
 
+ <!-- Campo de Contraseña con Angular Material -->
       <ion-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
@@ -31,6 +30,7 @@
             <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
         </mat-form-field>
+<!-- Ion Link para cambiar contraseña -->
             <p><a routerLink="/reset-password">Olvidaste tu contraseña?</a></p>
       </ion-card-content>
 
