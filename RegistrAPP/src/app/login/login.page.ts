@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,8 @@ export class LoginPage implements OnInit {
     Password: ''
   };
 
+  private token = "hola";
+
   hide: boolean = true; // Para manejar la visibilidad de la contraseña
 
   private usuarios: any[] = [
@@ -22,7 +26,7 @@ export class LoginPage implements OnInit {
 
   field: string = '';
 
-  constructor(public toastController: ToastController, private router: Router) {}
+  constructor(public toastController: ToastController, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -32,6 +36,7 @@ export class LoginPage implements OnInit {
         if (this.validateLongPass(this.login.Password)) {
           const usuarioValido = this.usuarios.find(user => user.username === this.login.Usuario && user.password === this.login.Password);
           if (usuarioValido) {
+            this.authService.storeToken(this.token);
             this.presentToast('Bienvenido ' + this.login.Usuario);
             let navigationExtras: NavigationExtras = {
               state: { user: this.login.Usuario }

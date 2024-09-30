@@ -1,0 +1,41 @@
+{
+    "users": [
+      {
+        "userId": 1,
+        "username": "docente",
+        "password": "password",
+        "role": "docente",
+        "email": "docente@duocuc.cl",
+        "fullName": "Juan Pérez"
+      },
+      {
+        "userId": 2,
+        "username": "alumno",
+        "password": "password",
+        "role": "alumno",
+        "email": "alumno@duocuc.cl",
+        "fullName": "María González",
+        "studentId": "20221001"
+      }
+    ],
+    "classes": [
+      {
+        "classId": 1,
+        "className": "Desarrollo Orientado a Objetos",
+        "teacherId": 1,
+        "schedule": [
+          {
+            "day": "Lunes",
+            "startTime": "09:00",
+            "endTime": "10:30"
+          },
+          {
+            "day": "Miércoles",
+            "startTime": "11:00",
+            "endTime": "12:30"
+          }
+        ]
+      }
+    ]
+  }
+  
