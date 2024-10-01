@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,16 +8,21 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  
-  constructor(private authService:AuthService, private router: Router) {
-    this.router.navigate(['home/perfil'])
+
+  constructor(private authService: AuthService, private router: Router) {
+    // Redireccionar a la ruta de asistencia por defecto
+    this.router.navigate(['home/asistencia']);
   }
-  segmentChanged($event: any){
+
+  segmentChanged($event: any) {
     console.log($event.detail.value);
-    let direction=$event.detail.value
-    this.router.navigate(['home/'+direction])
+    let direction = $event.detail.value;
+
+    // Navegar hacia la ruta seleccionada en el segmento
+    this.router.navigate(['home/' + direction]);
   }
-  logOut(){
+
+  logOut() {
     this.authService.removeToken();
     this.router.navigate(['/login']);
   }

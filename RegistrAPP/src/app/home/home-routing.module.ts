@@ -7,11 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children:[
-    {
-      path:'asistencia',
-      component:AsistenciaComponent
-    }
+    children: [
+      {
+        path: 'asistencia',
+        component: AsistenciaComponent
+      },
+      {
+        path: '', 
+        redirectTo: 'asistencia',  // Redireccionar a "asistencia" por defecto cuando se accede a 'home'
+        pathMatch: 'full'
+      }
     ]
   }
 ];
