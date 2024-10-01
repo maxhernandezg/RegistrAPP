@@ -20,7 +20,23 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-text-center ion-padding-center">
-    <h6>Bienvenido {{ usuario }}</h6>
+    <h6>Bienvenido</h6>
         <h6>Un lugar seguro donde podrás acceder a lo que necesites</h6>
   </ion-content>
+<ion-content>
+  <ion-segment value="Asistencia" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="perfil">
+      <ion-icon name="perfil"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="experiencias">
+      <ion-icon name="briefcase-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="certificaciones">
+      <ion-icon name="school-outline"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>
 </div>
