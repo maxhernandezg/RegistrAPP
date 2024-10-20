@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { DocenteHomePageRoutingModule } from './docente-home-routing.module';
-
+import { IonicModule } from '@ionic/angular'; // Asegúrate de importar IonicModule
 import { DocenteHomePage } from './docente-home.page';
+import { DocenteHomeRoutingModule } from './docente-home-routing.module'; // Corrige el nombre
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    DocenteHomePageRoutingModule
+    DocenteHomeRoutingModule,
   ],
-  declarations: [DocenteHomePage]
+  declarations: [DocenteHomePage],
 })
 export class DocenteHomePageModule {}

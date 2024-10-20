@@ -7,25 +7,16 @@
 <ion-content class="ion-padding">
   <ion-segment value="asistencia" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="asistencia">
-      <ion-label>Asistencia</ion-label>
+      <ion-icon name="book-outline"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="planificacion">
-      <ion-label>Planificación</ion-label>
+    <ion-segment-button value="experiencias">
+      <ion-icon name="briefcase-outline"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="notas">
-      <ion-label>Notas</ion-label>
+    <ion-segment-button value="certificaciones">
+      <ion-icon name="school-outline"></ion-icon>
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="selectedSegment === 'asistencia'">
-    <p>Contenido de Asistencia docente</p>
-  </div>
-  <div *ngIf="selectedSegment === 'planificacion'">
-    <p>Contenido de Planificación docente</p>
-  </div>
-  <div *ngIf="selectedSegment === 'notas'">
-    <p>Contenido de Notas docente</p>
-  </div>
-
-  <ion-button routerLink="/login">Cerrar Sesión</ion-button>
+  <!-- Donde se carga el contenido -->
+  <ion-router-outlet></ion-router-outlet>
 </ion-content>

@@ -7,22 +7,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./docente-home.page.scss'],
 })
 export class DocenteHomePage implements OnInit {
-  userName: string = 'Docente'; // Nombre por defecto
-  selectedSegment: string = 'asistencia'; // Segmento inicial
+  userName: string = 'Docente';
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as { user: { fullName: string } };
     if (state) {
-      this.userName = state.user.fullName; // Asignar nombre desde la sesión
+      this.userName = state.user.fullName;
     }
   }
 
   ngOnInit() {}
 
-  // Manejar cambio de segmento
   segmentChanged(event: any) {
-    this.selectedSegment = event.detail.value;
-    console.log('Segmento seleccionado:', this.selectedSegment);
+    const selectedSegment = event.detail.value;
+    this.router.navigate([`/docente-home/${selectedSegment}`]);
   }
 }

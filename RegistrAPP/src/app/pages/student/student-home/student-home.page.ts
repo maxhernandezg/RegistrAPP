@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./student-home.page.scss'],
 })
 export class StudentHomePage implements OnInit {
-  userName: string = 'Estudiante'; // Nombre del estudiante
-  selectedSegment: string = 'asistencia'; // Segmento inicial
+  userName: string = 'Estudiante';
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -20,9 +19,8 @@ export class StudentHomePage implements OnInit {
 
   ngOnInit() {}
 
-  // Manejar cambio de segmento
   segmentChanged(event: any) {
-    this.selectedSegment = event.detail.value;
-    console.log('Segmento seleccionado:', this.selectedSegment);
+    const selectedSegment = event.detail.value;
+    this.router.navigate([`/student-home/${selectedSegment}`]);
   }
 }
