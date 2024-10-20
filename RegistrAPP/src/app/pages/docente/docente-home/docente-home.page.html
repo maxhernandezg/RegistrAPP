@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido, {{ userName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment value="asistencia" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="asistencia">
+      <ion-label>Asistencia</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="planificacion">
+      <ion-label>Planificación</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="notas">
+      <ion-label>Notas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="selectedSegment === 'asistencia'">
+    <p>Contenido de Asistencia docente</p>
+  </div>
+  <div *ngIf="selectedSegment === 'planificacion'">
+    <p>Contenido de Planificación docente</p>
+  </div>
+  <div *ngIf="selectedSegment === 'notas'">
+    <p>Contenido de Notas docente</p>
+  </div>
+
+  <ion-button routerLink="/login">Cerrar Sesión</ion-button>
+</ion-content>

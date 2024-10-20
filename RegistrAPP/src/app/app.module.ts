@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import correcto para animaciones
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
 
 @NgModule({
   declarations: [AppComponent], // Declara los componentes que pertenecen al módulo
@@ -23,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
   ],
   providers: [
     ApiService, // Asegura que el servicio esté registrado como proveedor
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy } // Reutilización de rutas específica de Ionic
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync() // Reutilización de rutas específica de Ionic
   ],
   bootstrap: [AppComponent], // Componente raíz que se carga al inicio
 })

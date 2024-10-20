@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
-import { ApiService } from '../api.service'; // Importación del servicio API
-import { AuthService } from '../auth.service'; // Importación del servicio de autenticación
+import { ApiService } from '../api.service'; // Servicio API
+import { AuthService } from '../auth.service'; // Servicio de autenticación
 
 @Component({
   selector: 'app-login',
@@ -10,61 +10,74 @@ import { AuthService } from '../auth.service'; // Importación del servicio de a
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  login: any = {
-    username: '',
-    password: ''
-  };
-
-  private token = 'hola';
-  hide: boolean = true; // Maneja la visibilidad de la contraseña
-  field: string = '';
+  login = { username: '', password: '' }; // Modelo del formulario
+  hide = true; // Control de visibilidad de la contraseña
+  field = ''; // Campo faltante en el formulario
 
   constructor(
     public toastController: ToastController,
     private router: Router,
-    private apiService: ApiService, // Inyectamos ApiService
-    private authService: AuthService // Inyectamos AuthService
+    private apiService: ApiService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
 
-  // Método para validar e ingresar al sistema
   ingresar() {
-    if (this.validateModel(this.login)) {
-      if (this.validateLongUsuario(this.login.username)) {
-        if (this.validateLongPass(this.login.password)) {
-          this.apiService
-            .login(this.login.username, this.login.password) // Llamada al servicio API
-            .subscribe({
-              next: (user) => {
-                this.presentToast('Bienvenido ' + user.fullName); // Mensaje de bienvenida
-                this.authService.storeToken(this.token); // Guardar el token
+    if (!this.validateModel(this.login)) {
+      this.presentToast(`Falta: ${this.field}`);
+      return;
+    }
 
-                const navigationExtras: NavigationExtras = {
-                  state: { user: user },
-                };
-                this.router.navigate(['home'], navigationExtras); // Navegar al home
-              },
-              error: () => {
-                this.presentToast('Usuario o contraseña incorrectos');
-                this.login.password = ''; // Limpiar contraseña
-              },
-            });
-        } else {
-          this.presentToast('La contraseña debe ser de largo 4 y solo numérica');
-          this.login.password = '';
-        }
-      } else {
-        this.presentToast('El largo del usuario debe ser entre 3 y 8 caracteres');
-        this.login.username = '';
-      }
+    if (!this.validateLongUsuario(this.login.username)) {
+      this.presentToast('El largo del usuario debe ser entre 3 y 8 caracteres');
+      this.login.username = '';
+      return;
+    }
+
+    if (!this.validateLongPass(this.login.password)) {
+      this.presentToast('La contraseña debe ser de largo 4 y solo numérica');
+      this.login.password = '';
+      return;
+    }
+
+    // Llamada al servicio API para iniciar sesión
+    this.apiService.login(this.login.username, this.login.password).subscribe({
+      next: (user) => this.handleLoginSuccess(user),
+      error: () => this.handleLoginError(),
+    });
+  }
+
+  // Manejo de inicio de sesión exitoso
+  private handleLoginSuccess(user: any) {
+    console.log('Usuario autenticado:', user); // Verificar usuario recibido
+    this.presentToast(`Bienvenido ${user.fullName}`);
+    this.authService.storeUser(user); // Guardar usuario
+    this.authService.storeToken('auth-token'); // Guardar token
+  
+    const navigationExtras: NavigationExtras = { state: { user } };
+  
+    // Ajuste para aceptar "alumno" como "student"
+    if (user.role === 'docente') {
+      console.log('Redirigiendo a docente-home'); // Log para seguimiento
+      this.router.navigate(['docente-home'], navigationExtras); // Redirigir a docente-home
+    } else if (user.role === 'alumno') {
+      console.log('Redirigiendo a student-home'); // Log para seguimiento
+      this.router.navigate(['student-home'], navigationExtras); // Redirigir a student-home
     } else {
-      this.presentToast('Falta: ' + this.field);
+      console.log('Rol no permitido:', user.role); // Log del error
+      this.presentToast(`Rol no permitido: ${user.role}`);
     }
   }
 
+  // Manejo de error en inicio de sesión
+  private handleLoginError() {
+    this.presentToast('Usuario o contraseña incorrectos');
+    this.login.password = ''; // Limpiar el campo de contraseña
+  }
+
   // Validar el modelo del formulario
-  validateModel(model: any) {
+  private validateModel(model: any): boolean {
     for (const [key, value] of Object.entries(model)) {
       if (value === '') {
         this.field = key;
@@ -74,21 +87,21 @@ export class LoginPage implements OnInit {
     return true;
   }
 
-  // Validar longitud del usuario
-  validateLongUsuario(dato: string) {
-    return dato.length >= 3 && dato.length <= 8;
+  // Validar longitud del nombre de usuario
+  private validateLongUsuario(username: string): boolean {
+    return username.length >= 3 && username.length <= 8;
   }
 
   // Validar longitud de la contraseña
-  validateLongPass(dato: string) {
-    return dato.length === 4 && Number.isInteger(Number(dato));
+  private validateLongPass(password: string): boolean {
+    return password.length === 4 && !isNaN(Number(password));
   }
 
-  // Mostrar notificaciones en pantalla
-  async presentToast(message: string, duration?: number) {
+  // Mostrar notificaciones
+  private async presentToast(message: string, duration: number = 2000) {
     const toast = await this.toastController.create({
       message,
-      duration: duration ? duration : 2000,
+      duration,
     });
     toast.present();
   }
