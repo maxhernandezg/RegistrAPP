@@ -19,11 +19,8 @@ export class StudentHomePage implements OnInit {
 
   ngOnInit() {}
 
-  segmentChanged($event: any) {
-    console.log($event.detail.value);
-    let direction = $event.detail.value;
-
-    // Navegar hacia la ruta seleccionada en el segmento
-    this.router.navigate(['student-home/' + direction]);
+  segmentChanged(event: any) {
+    const selectedSegment = event.detail.value;
+    this.router.navigate([`/student-home/${selectedSegment}`]);
   }
 }

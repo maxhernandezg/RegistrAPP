@@ -10,8 +10,13 @@
     <ion-segment-button value="asistencia">
       <ion-icon name="book-outline"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="abrircamara" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="abrircamara">
       <ion-icon name="camera-outline"></ion-icon>
     </ion-segment-button>
   </ion-segment>
+</ion-content>
+
+<ion-content>
+  <!-- Aquí cargamos las rutas dinámicamente en función de las selecciones del segmento -->
+  <ion-router-outlet></ion-router-outlet>
 </ion-content>

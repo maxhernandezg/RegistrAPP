@@ -14,7 +14,7 @@ const routes: Routes = [
         component: AsistenciaComponent,
       },
       {
-        path: 'AbrirCamara',
+        path: 'abrircamara',
         component: AbrircamaraComponent,
       },
       {
