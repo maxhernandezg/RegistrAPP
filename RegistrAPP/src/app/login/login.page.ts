@@ -69,6 +69,7 @@ export class LoginPage implements OnInit {
       this.presentToast(`Rol no permitido: ${user.role}`);
     }
   }
+  
 
   // Manejo de error en inicio de sesión
   private handleLoginError() {

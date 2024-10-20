@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from './auth-guard.service'; // Asegúrate de que la ruta sea correcta
-
+import { AuthGuardService } from './auth-guard.service'; // Verifica que el servicio esté en la ruta correcta
 
 const routes: Routes = [
   {
@@ -9,7 +8,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
     canActivate: [AuthGuardService],
-    data: { roles: ['docente', 'student'] },
+    data: { roles: ['docente', 'student'] }, // Permitir acceso a ambos roles
   },
   {
     path: 'docente-home',
@@ -18,7 +17,7 @@ const routes: Routes = [
         (m) => m.DocenteHomePageModule
       ),
     canActivate: [AuthGuardService],
-    data: { roles: ['docente'] },
+    data: { roles: ['docente'] }, // Solo acceso para docentes
   },
   {
     path: 'student-home',
@@ -27,7 +26,7 @@ const routes: Routes = [
         (m) => m.StudentHomePageModule
       ),
     canActivate: [AuthGuardService],
-    data: { roles: ['student'] },
+    data: { roles: ['alumno'] }, // Cambiamos 'student' por 'alumno'
   },
   {
     path: 'login',
@@ -51,10 +50,11 @@ const routes: Routes = [
     redirectTo: 'login',
   },
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule], // Asegúrate de que RouterModule esté exportado
+  exports: [RouterModule], // Exportar RouterModule para usarlo en otros módulos
 })
-export class AppRoutingModule {} // Asegúrate de exportar AppRoutingModule
+export class AppRoutingModule {}
