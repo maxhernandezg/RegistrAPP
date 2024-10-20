@@ -32,8 +32,9 @@
       <ion-segment-button value="asistencia">
         <ion-icon name="book-outline"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="experiencias">
-        <ion-icon name="briefcase-outline"></ion-icon>
+      <ion-segment-button value="perfil-alumno" (ionChange)="segmentChanged($event)">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        
       </ion-segment-button>
       <ion-segment-button value="certificaciones">
         <ion-icon name="school-outline"></ion-icon>
