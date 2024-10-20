@@ -1,22 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bienvenido, {{ userName }}</ion-title>
+    <ion-title class="ion-text-center">Bienvenido/a, {{ userName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  
   <ion-segment value="asistencia" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="asistencia">
       <ion-icon name="book-outline"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="actividades">
-      <ion-icon name="briefcase-outline"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="notas">
-      <ion-icon name="school-outline"></ion-icon>
+    <ion-segment-button value="abrircamara" (ionChange)="segmentChanged($event)">
+      <ion-icon name="camera-outline"></ion-icon>
     </ion-segment-button>
   </ion-segment>
-
-  <!-- Donde se cargará el contenido dinámicamente -->
-  <ion-router-outlet></ion-router-outlet>
 </ion-content>

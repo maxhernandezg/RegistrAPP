@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudentHomePage } from './student-home.page';
 import { AsistenciaComponent } from 'src/app/asistencia/asistencia.component'; // Importar el componente
+import { AbrircamaraComponent } from 'src/app/abrircamara/abrircamara.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path: 'asistencia',
         component: AsistenciaComponent,
+      },
+      {
+        path: 'AbrirCamara',
+        component: AbrircamaraComponent,
       },
       {
         path: '',
