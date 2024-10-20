@@ -13,25 +13,26 @@
         </ion-label>
       </ion-card-title>
 
-<!-- Campo de Usuario con Angular Material -->
+      <!-- Campo de Usuario: Corregido para usar 'username' en lugar de 'Usuario' -->
       <ion-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input matInput type="text" [(ngModel)]="login.Usuario">
+          <input matInput type="text" [(ngModel)]="login.username"> <!-- Cambio aquí -->
         </mat-form-field>  
       </ion-card-content>
 
- <!-- Campo de Contraseña con Angular Material -->
+      <!-- Campo de Contraseña: Corregido para usar 'password' en lugar de 'Password' -->
       <ion-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.Password">
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password"> <!-- Cambio aquí -->
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'">
             <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
         </mat-form-field>
-<!-- Ion Link para cambiar contraseña -->
-            <p><a routerLink="/reset-password">Olvidaste tu contraseña?</a></p>
+
+        <!-- Enlace para restablecer contraseña -->
+        <p><a routerLink="/reset-password">Olvidaste tu contraseña?</a></p>
       </ion-card-content>
 
       <!-- Botón de Login -->

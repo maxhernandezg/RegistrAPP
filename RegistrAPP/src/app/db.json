@@ -3,7 +3,7 @@
       {
         "userId": 1,
         "username": "docente",
-        "password": "password",
+        "password": "1234",
         "role": "docente",
         "email": "docente@duocuc.cl",
         "fullName": "Juan Pérez"
@@ -11,7 +11,7 @@
       {
         "userId": 2,
         "username": "alumno",
-        "password": "password",
+        "password": "1234",
         "role": "alumno",
         "email": "alumno@duocuc.cl",
         "fullName": "María González",
