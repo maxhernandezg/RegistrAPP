@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Método de inicio de sesión
+  // LOGIN //
   login(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/users?username=${username}&password=${password}`;
     return this.http.get<any[]>(url).pipe(
@@ -96,7 +96,7 @@ export class ApiService {
     );
   }
 
-  deleteAttendance(id: number): Observable<any> {
+  deleteAttendance(id: string): Observable<any> {
     const url = `${this.apiUrl}/attendance/${id}`;
     console.log('URL de eliminación de asistencia:', url); // Debug
     return this.http.delete<any>(url).pipe(

@@ -84,6 +84,8 @@ export class AsistenciaComponent implements OnInit {
               this.presentToast('Error al eliminar asistencia');
             },
           });
+        } else {
+          console.warn(`No se encontró asistencia para la clase ${classId}`);
         }
       },
       error: (err) => {
