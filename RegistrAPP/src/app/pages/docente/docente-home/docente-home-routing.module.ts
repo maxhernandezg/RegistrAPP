@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DocenteHomePage } from './docente-home.page';
 import { AsistenciaComponent } from 'src/app/asistencia/asistencia.component'; // Importar el componente
+import { ClasesComponent } from 'src/app/clases/clases.component';
+import { RegistroAsistenciaComponent } from 'src/app/registro-asistencia/registro-asistencia.component';
+import { PerfilDocenteComponent } from 'src/app/perfil-docente/perfil-docente.component';
 
 const routes: Routes = [
   {
@@ -9,8 +12,16 @@ const routes: Routes = [
     component: DocenteHomePage,
     children: [
       {
-        path: 'asistencia',
-        component: AsistenciaComponent,
+        path: 'clases',
+        component: ClasesComponent,
+      },
+      {
+        path: 'registro-asistencia',
+        component: RegistroAsistenciaComponent,
+      },
+      {
+        path: 'perfil-docente',
+        component:PerfilDocenteComponent,
       },
       {
         path: '',
