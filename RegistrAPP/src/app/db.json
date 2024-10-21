@@ -1,114 +1,41 @@
 {
-  "users": [
-    {
-      "userId": 2,
-      "username": "alumno",
-      "password": "1234",
-      "role": "student",
-      "email": "alumno@duocuc.cl",
-      "fullName": "María González",
-      "id": "6ab5"
-    },
-    {
-      "userId": 3,
-      "username": "admin",
-      "password": "1234",
-      "role": "admin",
-      "email": "admin@duocuc.cl",
-      "fullName": "Admin Usuario",
-      "id": "89c1"
-    },
-    {
-      "id": null,
-      "fullName": "qweqwe",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "admin"
-    },
-    {
-      "id": null,
-      "fullName": "qweqwe3",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "admin"
-    },
-    {
-      "id": null,
-      "fullName": "qweqwe3",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "qw",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "qwss",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "prueba",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "pruebaa",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "pruebaa",
-      "email": "qweqwe",
-      "username": "qweqwe",
-      "password": "1234",
-      "role": "docente"
-    },
-    {
-      "id": null,
-      "fullName": "aASD",
-      "email": "ASDASD",
-      "username": "ASDASD",
-      "password": "ASDASD",
-      "role": "student"
-    }
-  ],
-  "classes": [
-    {
-      "classId": 1,
-      "className": "Desarrollo Orientado a Objetos",
-      "teacherId": 1,
-      "schedule": [
-        {
-          "day": "Lunes",
-          "startTime": "09:00",
-          "endTime": "10:30"
-        },
-        {
-          "day": "Miércoles",
-          "startTime": "11:00",
-          "endTime": "12:30"
-        }
-      ],
-      "id": "7793"
-    }
-  ]
-}
+    "users": [
+      {
+        "userId": 1,
+        "username": "docente",
+        "password": "1234",
+        "role": "docente",
+        "email": "docente@duocuc.cl",
+        "fullName": "Juan Pérez"
+      },
+      {
+        "userId": 2,
+        "username": "alumno",
+        "password": "1234",
+        "role": "alumno",
+        "email": "alumno@duocuc.cl",
+        "fullName": "María González",
+        "studentId": "20221001"
+      }
+    ],
+    "classes": [
+      {
+        "classId": 1,
+        "className": "Desarrollo Orientado a Objetos",
+        "teacherId": 1,
+        "schedule": [
+          {
+            "day": "Lunes",
+            "startTime": "09:00",
+            "endTime": "10:30"
+          },
+          {
+            "day": "Miércoles",
+            "startTime": "11:00",
+            "endTime": "12:30"
+          }
+        ]
+      }
+    ]
+  }
+  

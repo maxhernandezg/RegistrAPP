@@ -72,7 +72,7 @@ updateUser(id: string, user: any): Observable<any> {
 // Eliminar un usuario por ID
 deleteUser(userId: string): Observable<any> {
   const url = `${this.apiUrl}/${userId}`; // URL correcta
-  console.log('URL de eliminación:', url); // Debug
+  console.log('URL de eliminación:', url); // Debug para confirmar la URL
 
   return this.http.delete<any>(url).pipe(
     catchError((error) => {
@@ -81,6 +81,7 @@ deleteUser(userId: string): Observable<any> {
     })
   );
 }
+
 
 
 

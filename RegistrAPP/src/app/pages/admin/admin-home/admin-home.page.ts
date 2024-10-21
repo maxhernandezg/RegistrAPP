@@ -30,11 +30,10 @@ export class AdminHomePage implements OnInit {
     this.loadUsers(); // Cargamos los usuarios al iniciar
   }
 
-  // Cargar todos los usuarios
   loadUsers() {
     this.apiService.getUsers().subscribe({
       next: (users) => {
-        console.log('Usuarios cargados:', users); // Verificar que los usuarios tienen `userId`
+        console.log('Usuarios cargados:', users); // Verificar estructura de los usuarios
         this.users = users;
       },
       error: (err) => {
@@ -43,6 +42,7 @@ export class AdminHomePage implements OnInit {
       },
     });
   }
+  
 
   
   // Guardar o actualizar un usuario
@@ -84,26 +84,35 @@ export class AdminHomePage implements OnInit {
   
   
   selectUser(user: any) {
-    this.userForm = { ...user }; // Ahora 'userForm' incluirá 'id'
+    console.log('Usuario seleccionado para editar:', user); // Debug
+  
+    if (!user || !user.id) {
+      this.presentToast('Usuario seleccionado no tiene un ID válido');
+      return;
+    }
+  
+    this.userForm = { ...user }; // Asignar usuario seleccionado al formulario
   }
+  
   
   
 
   // Eliminar un usuario
   // Eliminar un usuario
+// Eliminar un usuario
 deleteUser(user: any) {
-  const userId = user.id; // Asegúrate de que se usa 'id'
-  if (!userId) {
+  if (!user || !user.id) {
     this.presentToast('ID de usuario no válido');
     return;
   }
 
+  const userId = user.id;
   console.log('ID del usuario a eliminar:', userId); // Debug
 
   this.apiService.deleteUser(userId).subscribe({
     next: () => {
       this.presentToast('Usuario eliminado correctamente');
-      this.loadUsers(); // Recargar la lista de usuarios después de eliminar
+      this.loadUsers(); // Recargar la lista de usuarios
     },
     error: (err) => {
       console.error('Error al eliminar usuario:', err);
@@ -111,6 +120,7 @@ deleteUser(user: any) {
     },
   });
 }
+
 
   
   
