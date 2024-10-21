@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StudentHomePage } from './student-home.page';
 import { AsistenciaComponent } from 'src/app/asistencia/asistencia.component'; // Importar el componente
 import { AbrircamaraComponent } from 'src/app/abrircamara/abrircamara.component';
+import { PerfilAlumnoComponent } from 'src/app/perfil-alumno/perfil-alumno.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'abrircamara',
         component: AbrircamaraComponent,
+      },
+      {
+        path: 'perfil-alumno',
+        component:PerfilAlumnoComponent,
       },
       {
         path: '',
