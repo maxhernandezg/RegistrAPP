@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
+import { AbrircamaraComponent } from './abrircamara/abrircamara.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
 
 @NgModule({
-  declarations: [AppComponent], // Declara los componentes que pertenecen al módulo
+  declarations: [AppComponent, AbrircamaraComponent], // Declara los componentes que pertenecen al módulo
   imports: [
     BrowserModule, 
     HttpClientModule, 
@@ -26,6 +27,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ApiService, // Asegura que el servicio esté registrado como proveedor
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync() // Reutilización de rutas específica de Ionic
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent], // Componente raíz que se carga al inicio
 })
 export class AppModule {}
