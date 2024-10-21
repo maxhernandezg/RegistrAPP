@@ -1,3 +1,38 @@
-<p>
-  asistencia works!s
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asistencia a Clases</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let clase of clases">
+      <ion-label>
+        <h2>{{ clase.className }}</h2>
+      </ion-label>
+      
+      <ion-button
+        *ngIf="!attendedClasses.has(clase.id)"
+        (click)="registerAttendance(clase.id)"
+      >
+        Asistir
+      </ion-button>
+
+      <ion-button
+        *ngIf="attendedClasses.has(clase.id)"
+        color="success"
+        disabled
+      >
+        Registrado
+      </ion-button>
+
+      <ion-button
+        *ngIf="attendedClasses.has(clase.id)"
+        color="danger"
+        (click)="deleteAttendance(clase.id)"
+      >
+        Eliminar Asistencia
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,4 +1,3 @@
-// src/app/services/api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -8,17 +7,17 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000/users'; // Base URL del JSON Server
+  private apiUrl = 'http://localhost:3000'; // Base URL del JSON Server
 
   constructor(private http: HttpClient) {}
 
   // Método de inicio de sesión
   login(username: string, password: string): Observable<any> {
-    const url = `${this.apiUrl}?username=${username}&password=${password}`;
+    const url = `${this.apiUrl}/users?username=${username}&password=${password}`;
     return this.http.get<any[]>(url).pipe(
       map((users) => {
         if (users.length > 0) {
-          return users[0]; // Devuelve el primer usuario encontrado
+          return users[0]; // Retorna el primer usuario encontrado
         } else {
           throw new Error('Credenciales incorrectas');
         }
@@ -27,16 +26,16 @@ export class ApiService {
     );
   }
 
-  // Leer todos los usuarios
+  // Obtener todos los usuarios
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/users`).pipe(
       catchError((error) => this.handleError(error))
     );
   }
 
   // Obtener un usuario por ID
-  getUserById(userId: number): Observable<any> {
-    const url = `${this.apiUrl}/${userId}`;
+  getUserById(id: number): Observable<any> {
+    const url = `${this.apiUrl}/users/${id}`;
     return this.http.get<any>(url).pipe(
       catchError((error) => this.handleError(error))
     );
@@ -45,48 +44,68 @@ export class ApiService {
   // Crear un nuevo usuario
   createUser(user: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(this.apiUrl, user, { headers }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/users`, user, { headers }).pipe(
       catchError((error) => this.handleError(error))
     );
   }
-  
 
   // Actualizar un usuario existente
-updateUser(id: string, user: any): Observable<any> {
-  const url = `${this.apiUrl}/${id}`; // Usar el 'id' del usuario
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  updateUser(id: number, user: any): Observable<any> {
+    const url = `${this.apiUrl}/users/${id}`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  console.log('Actualizando usuario:', user); // Para debug
-  console.log('URL:', url); // Asegúrate de que la URL sea correcta
+    console.log('Actualizando usuario:', user); // Para debug
+    console.log('URL:', url); // Verificar la URL
 
-  return this.http.put<any>(url, user, { headers }).pipe(
-    catchError((error) => {
-      console.error('Error en la actualización:', error);
-      return this.handleError(error); // Manejo de errores
-    })
-  );
-}
+    return this.http.put<any>(url, user, { headers }).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
 
+  // Eliminar un usuario por ID
+  deleteUser(id: number): Observable<any> {
+    const url = `${this.apiUrl}/users/${id}`;
+    console.log('URL de eliminación:', url); // Verificar la URL
 
+    return this.http.delete<any>(url).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
 
-// Eliminar un usuario por ID
-deleteUser(userId: string): Observable<any> {
-  const url = `${this.apiUrl}/${userId}`; // URL correcta
-  console.log('URL de eliminación:', url); // Debug para confirmar la URL
+  // ASISTENCIA //
 
-  return this.http.delete<any>(url).pipe(
-    catchError((error) => {
-      console.error('Error en el servicio al eliminar:', error);
-      return throwError(() => new Error('Error en la eliminación del usuario'));
-    })
-  );
-}
+  // Obtener todas las clases
+  getClasses(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/classes`).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
 
+  // Registrar asistencia
+  registerAttendance(attendance: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.apiUrl}/attendance`, attendance, { headers }).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
 
+  // Obtener asistencias por usuario
+  getAttendanceByUser(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance?userId=${userId}`).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
 
-
-
-  
+  deleteAttendance(id: number): Observable<any> {
+    const url = `${this.apiUrl}/attendance/${id}`;
+    console.log('URL de eliminación de asistencia:', url); // Debug
+    return this.http.delete<any>(url).pipe(
+      catchError((error) => {
+        console.error('Error al eliminar asistencia:', error);
+        return throwError(() => new Error('Error al eliminar asistencia'));
+      })
+    );
+  }
 
   // Manejo de errores
   private handleError(error: any): Observable<never> {
