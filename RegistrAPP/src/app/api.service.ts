@@ -49,23 +49,43 @@ export class ApiService {
       catchError((error) => this.handleError(error))
     );
   }
+  
 
   // Actualizar un usuario existente
-  updateUser(userId: number, user: any): Observable<any> {
-    const url = `${this.apiUrl}/${userId}`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put<any>(url, user, { headers }).pipe(
-      catchError((error) => this.handleError(error))
-    );
-  }
+updateUser(id: string, user: any): Observable<any> {
+  const url = `${this.apiUrl}/${id}`; // Usar el 'id' del usuario
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  // Eliminar un usuario por ID
-  deleteUser(userId: number): Observable<any> {
-    const url = `${this.apiUrl}/${userId}`;
-    return this.http.delete<any>(url).pipe(
-      catchError((error) => this.handleError(error))
-    );
-  }
+  console.log('Actualizando usuario:', user); // Para debug
+  console.log('URL:', url); // Asegúrate de que la URL sea correcta
+
+  return this.http.put<any>(url, user, { headers }).pipe(
+    catchError((error) => {
+      console.error('Error en la actualización:', error);
+      return this.handleError(error); // Manejo de errores
+    })
+  );
+}
+
+
+
+// Eliminar un usuario por ID
+deleteUser(userId: string): Observable<any> {
+  const url = `${this.apiUrl}/${userId}`; // URL correcta
+  console.log('URL de eliminación:', url); // Debug
+
+  return this.http.delete<any>(url).pipe(
+    catchError((error) => {
+      console.error('Error en el servicio al eliminar:', error);
+      return throwError(() => new Error('Error en la eliminación del usuario'));
+    })
+  );
+}
+
+
+
+
+  
 
   // Manejo de errores
   private handleError(error: any): Observable<never> {

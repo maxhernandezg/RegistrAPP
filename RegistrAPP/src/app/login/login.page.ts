@@ -64,7 +64,11 @@ export class LoginPage implements OnInit {
     } else if (user.role === 'alumno') {
       console.log('Redirigiendo a student-home'); // Log para seguimiento
       this.router.navigate(['student-home'], navigationExtras); // Redirigir a student-home
-    } else {
+    } else if (user.role === 'admin') {
+      console.log('Redirigiendo a admin-home'); // Log para seguimiento
+      this.router.navigate(['admin-home'], navigationExtras); // Redirigir a student-home
+    }
+     else {
       console.log('Rol no permitido:', user.role); // Log del error
       this.presentToast(`Rol no permitido: ${user.role}`);
     }

@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 // Importar ApiService (asegúrate que la ruta sea correcta)
 import { ApiService } from './api.service';
 
@@ -19,7 +19,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   imports: [
     BrowserModule, 
     HttpClientModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
+    FormsModule, 
     AppRoutingModule, 
     BrowserAnimationsModule // Agregado para soporte de animaciones
   ],

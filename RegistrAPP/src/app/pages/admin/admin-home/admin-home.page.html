@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Administración de Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Lista de Usuarios</h2>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>
+        <h3>{{ user.fullName }}</h3>
+        <p>{{ user.email }} - Rol: {{ user.role }}</p>
+      </ion-label>
+      <ion-button color="danger" (click)="deleteUser(user)">Eliminar</ion-button>
+
+      <ion-button (click)="selectUser(user)">Editar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <h2>{{ selectedUser ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+  <ion-item>
+    <ion-input placeholder="Nombre Completo" [(ngModel)]="userForm.fullName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Email" [(ngModel)]="userForm.email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Username" [(ngModel)]="userForm.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Contraseña" [(ngModel)]="userForm.password" type="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select placeholder="Rol" [(ngModel)]="userForm.role">
+      <ion-select-option value="admin">Admin</ion-select-option>
+      <ion-select-option value="docente">Docente</ion-select-option>
+      <ion-select-option value="student">Estudiante</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="full" (click)="saveUser()">
+    {{ selectedUser ? 'Actualizar' : 'Agregar' }} Usuario
+  </ion-button>
+</ion-content>
