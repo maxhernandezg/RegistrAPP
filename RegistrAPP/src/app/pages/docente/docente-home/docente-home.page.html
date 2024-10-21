@@ -1,22 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bienvenido, {{ userName }}</ion-title>
+    <ion-title class="ion-text-center">Bienvenido, {{ userName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-segment value="asistencia" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="asistencia">
-      <ion-icon name="book-outline"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="experiencias">
+  <ion-segment value="clases" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="clases">
       <ion-icon name="briefcase-outline"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="certificaciones">
-      <ion-icon name="school-outline"></ion-icon>
+    <ion-segment-button value="registro-asistencia">
+      <ion-icon name="qr-code-outline"></ion-icon>
     </ion-segment-button>
   </ion-segment>
-
   <!-- Donde se carga el contenido -->
+</ion-content>
+<ion-content>
   <ion-router-outlet></ion-router-outlet>
 </ion-content>
