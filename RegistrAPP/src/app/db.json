@@ -31,14 +31,14 @@
   ],
   "attendance": [
     {
-      "id": "4b63",
-      "userId": 2,
-      "classId": "1"
-    },
-    {
       "id": "af84",
       "userId": 2,
       "classId": "2"
+    },
+    {
+      "id": "3afb",
+      "userId": 2,
+      "classId": "1"
     }
   ]
 }

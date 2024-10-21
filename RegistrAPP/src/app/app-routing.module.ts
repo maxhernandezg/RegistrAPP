@@ -11,15 +11,6 @@ const routes: Routes = [
     data: { roles: ['docente', 'student'] }, // Permitir acceso a ambos roles
   },
   {
-    path: 'admin-home',
-    loadChildren: () =>
-      import('./pages/admin/admin-home/admin-home.module').then(
-        (m) => m.AdminHomePageModule
-      ),
-    canActivate: [AuthGuardService],
-    data: { roles: ['admin'] },
-  },
-  {
     path: 'docente-home',
     loadChildren: () =>
       import('./pages/docente/docente-home/docente-home.module').then(
@@ -57,11 +48,7 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
-  },
-  {
-    path: 'admin-home',
-    loadChildren: () => import('./pages/admin/admin-home/admin-home.module').then( m => m.AdminHomePageModule)
-  },
+  }
 
 
 ];
