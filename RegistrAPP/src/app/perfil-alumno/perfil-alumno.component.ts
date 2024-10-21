@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-perfil-alumno',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilAlumnoComponent  implements OnInit {
 
-  constructor() { }
+  datosalumno: any [] = [];
 
-  ngOnInit() {}
+  constructor(private apiService: ApiService) { }
 
+  ngOnInit() {
+    // Llama al servicio para obtener los datos
+    this.apiService.getData().subscribe((data) => {
+      this.datosalumno = data;  // Asigna los datos recibidos
+    });
+  }
 }
