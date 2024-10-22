@@ -66,4 +66,43 @@ export class ApiService {
     console.error('Ocurrió un error:', error);
     return throwError(() => new Error('Ocurrió un error en la operación'));
   }
+
+  // clases //
+  // Obtener clases por ID del profesor
+getClassesByTeacher(teacherId: number): Observable<any[]> {
+  const url = `${this.apiUrl}/classes?teacherId=${teacherId}`;
+  return this.http.get<any[]>(url).pipe(
+    catchError((error) => this.handleError(error))
+  );
+}
+updateClass(classId: number, updatedClass: any): Observable<any> {
+  const url = `${this.apiUrl}/classes/${classId}`;
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.put<any>(url, updatedClass, { headers }).pipe(
+    catchError((error) => this.handleError(error))
+  );
+}
+createClass(clase: any): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(`${this.apiUrl}/classes`, clase, { headers }).pipe(
+    catchError((error) => this.handleError(error))
+  );
+}
+deleteClassWithAttendance(classId: number): Observable<any> {
+  return this.http.get<any[]>(`${this.apiUrl}/attendance?classId=${classId}`).pipe(
+    map((attendances) => {
+      const deleteRequests = attendances.map((attendance) =>
+        this.http.delete(`${this.apiUrl}/attendance/${attendance.id}`).toPromise()
+      );
+
+      return Promise.all(deleteRequests).then(() =>
+        this.http.delete(`${this.apiUrl}/classes/${classId}`).toPromise()
+      );
+    }),
+    catchError((error) => {
+      console.error('Error al eliminar clase y asistencias:', error);
+      return throwError(() => new Error('Error al eliminar clase y asistencias'));
+    })
+  );
+}
 }

@@ -1,3 +1,44 @@
-<p>
-  clases works!ssss
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clases del Profesor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let clase of clases">
+      <ion-label>{{ clase.className }}</ion-label>
+      <ion-button (click)="selectClass(clase)">Actualizar</ion-button>
+      <ion-button color="danger" (click)="deleteClass(clase)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="selectedClass">
+    <ion-card-header>
+      <ion-card-title>Actualizar Clase</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre de la Clase</ion-label>
+        <ion-input [(ngModel)]="selectedClass.className"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="updateClass()">Guardar Cambios</ion-button>
+      <ion-button expand="full" color="medium" (click)="selectedClass = null">
+        Cancelar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Crear Nueva Clase</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre de la Clase</ion-label>
+        <ion-input [(ngModel)]="newClass.className"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="createClass()">Crear Clase</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

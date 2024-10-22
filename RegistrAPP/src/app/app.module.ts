@@ -14,9 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
-
+import { ClasesComponent } from './clases/clases.component';
 @NgModule({
-  declarations: [AppComponent, AbrircamaraComponent, AsistenciaComponent], // Declara los componentes que pertenecen al módulo
+  declarations: [AppComponent, AbrircamaraComponent, AsistenciaComponent, ClasesComponent], // Declara los componentes que pertenecen al módulo
   imports: [
     BrowserModule, 
     HttpClientModule, 

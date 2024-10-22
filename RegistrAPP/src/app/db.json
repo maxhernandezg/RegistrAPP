@@ -19,26 +19,10 @@
   ],
   "classes": [
     {
-      "id": "1",
-      "className": "Desarrollo Orientado a Objetos",
-      "teacherId": 1
-    },
-    {
       "id": "2",
       "className": "Programación Web",
       "teacherId": 1
     }
   ],
-  "attendance": [
-    {
-      "id": "af84",
-      "userId": 2,
-      "classId": "2"
-    },
-    {
-      "id": "0642",
-      "userId": 2,
-      "classId": "1"
-    }
-  ]
+  "attendance": []
 }
