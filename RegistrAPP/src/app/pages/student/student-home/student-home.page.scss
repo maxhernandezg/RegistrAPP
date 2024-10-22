@@ -1,0 +1,23 @@
+:root {
+  --ion-background-color: #ffffff; // Fondo blanco para toda la app
+  --ion-text-color: #0e0d68; // Texto negro
+}
+
+// Estilos para componentes específicos
+ion-content {
+  --background: var(--ion-background-color); // Aplicar fondo blanco a ion-content
+  color: var(--ion-text-color); // Texto negro
+}
+
+ion-header, ion-toolbar {
+  --background: var(--ion-background-color); // Fondo blanco para el header y toolbar
+}
+
+ion-segment-button {
+  --color-checked: var(--ion-text-color); // Color de texto cuando el botón del segmento está seleccionado
+  color: var(--ion-text-color); // Color de texto negro en los botones
+}
+
+ion-router-outlet {
+  margin-top: 40px; // Ajuste del margen superior
+}

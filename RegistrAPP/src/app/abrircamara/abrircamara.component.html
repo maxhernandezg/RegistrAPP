@@ -1,10 +1,10 @@
-<ion-content class="ion-padding">
-  <ion-button expand="full" (click)="takePicture()">
+<ion-content class="ion-text-center ion-padding">
+  <ion-button  (click)="takePicture()">
     Tomar Foto
   </ion-button>
 
   <div *ngIf="imageUrl" class="ion-margin-top">
-    <h2>Imagen Capturadaa:</h2>
+    <h6>Imágen capturada</h6>
     <img [src]="imageUrl" alt="Imagen Capturada" />
   </div>
 </ion-content>

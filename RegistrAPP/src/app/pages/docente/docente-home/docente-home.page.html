@@ -1,23 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Bienvenido, {{ userName }}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <!-- Menú lateral para iniciar sesión -->
+  <ion-menu side="end" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>RegistrAPP</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <!-- Botón para iniciar sesión en el menú lateral -->
+      <ion-button expand="full" routerLink="/login">Cerrar sesión</ion-button>
+    </ion-content>
+  </ion-menu>
 
-<ion-content class="ion-padding">
-  <ion-segment value="clases" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="clases">
-      <ion-icon name="briefcase-outline"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="registro-asistencia">
-      <ion-icon name="qr-code-outline"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="perfil-docente">
-      <ion-icon name="person-circle-outline"></ion-icon>
-    </ion-segment-button>
-  </ion-segment>
-  <!-- Donde se carga el contenido -->
-</ion-content>
-<ion-content>
-  <ion-router-outlet></ion-router-outlet>
-</ion-content>
+  <!-- Contenido principal de la aplicación -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <!-- Botón para abrir el menú -->
+        <ion-button (click)="openMenu()">
+          <ion-icon name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Bienvenido/a, {{ userName }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content id="main-content">
+    <!-- Segmento de botones -->
+    <ion-segment value="clases" (ionChange)="segmentChanged($event)" slot="fixed">
+      <ion-segment-button value="clases">
+        <ion-icon name="briefcase-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="registro-asistencia">
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="perfil-docente">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Aquí cargamos las rutas dinámicamente en función de las selecciones del segmento -->
+    <ion-router-outlet style="margin-top: 40px;"></ion-router-outlet>
+  </ion-content>
+</ion-app>
+
+
+
