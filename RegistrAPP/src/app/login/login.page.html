@@ -1,42 +1,58 @@
 <ion-content>
-  <ion-title class="ion-padding-top ion-text-center">
+  <!-- Emoji y Nombre de la Aplicación -->
+  <div class="ion-padding-top ion-text-center">
     <ion-label>
-      <h2>RegistrAPP</h2>
+      <h1>🤓</h1>
     </ion-label>
-  </ion-title>
-
-  <div class="ion-padding-vertical">
-    <ion-card class="ion-text-center">
-      <ion-card-title class="ion-text-center">
-        <ion-label>
-          <h4>Bienvenido</h4>
-        </ion-label>
-      </ion-card-title>
-
-      <!-- Campo de Usuario: Corregido para usar 'username' en lugar de 'Usuario' -->
-      <ion-card-content>
-        <mat-form-field appearance="fill">
-          <mat-label>Usuario</mat-label>
-          <input matInput type="text" [(ngModel)]="login.username"> <!-- Cambio aquí -->
-        </mat-form-field>  
-      </ion-card-content>
-
-      <!-- Campo de Contraseña: Corregido para usar 'password' en lugar de 'Password' -->
-      <ion-card-content>
-        <mat-form-field appearance="fill">
-          <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password"> <!-- Cambio aquí -->
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'">
-            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
-        </mat-form-field>
-
-        <!-- Enlace para restablecer contraseña -->
-        <p><a routerLink="/reset-password">Olvidaste tu contraseña?</a></p>
-      </ion-card-content>
-
-      <!-- Botón de Login -->
-      <ion-button shape="round" (click)="ingresar()">Ingresar</ion-button>
-    </ion-card>
+    <ion-label>
+      <h2>RegistrApp</h2>
+    </ion-label>
   </div>
+
+  <!-- Texto de Bienvenida -->
+  <div class="ion-padding-vertical ion-text-center">
+    <p>¡Qué gusto tenerte de vuelta!</p>
+  </div>
+
+ <!-- Contenedor para centrar y alinear los botones con los inputs -->
+<div class="form-container">
+  <ion-card-content>
+    <ion-list>
+      <!-- Campo de Usuario -->
+      <ion-item>
+        <ion-input
+          label="Usuario"
+          labelPlacement="stacked"
+          [clearOnEdit]="true"
+          placeholder="Ingresa tu usuario"
+          [(ngModel)]="login.username"
+        >
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de Contraseña -->
+      <ion-item>
+        <ion-input
+          label="Contraseña"
+          labelPlacement="stacked"
+          type="password"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="login.password"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+
+  <!-- Botón de Inicio de Sesión -->
+  <ion-button expand="block" color="primary" shape="round" (click)="ingresar()">
+    Iniciar Sesión
+  </ion-button>
+
+  <!-- Botón de Recuperar Contraseña -->
+  <ion-button shape="round" expand="block" fill="outline">
+    ¿Olvidaste tu contraseña?
+  </ion-button>
+</div>
+
 </ion-content>

@@ -3,7 +3,42 @@
     <ion-title>Página No Encontrada</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <h6>Lo sentimos, la página solicitada no ha sido encontrada.</h6>
-  <ion-button [routerLink]="['/home']">Volver al Home</ion-button>
+
+<ion-content class="ion-padding ion-text-center">
+  <div class="not-found-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/755/755014.png" alt="Página No Encontrada" class="not-found-image"/>
+    <h2>¡Oops! Página No Encontrada</h2>
+    <p>Lo sentimos, la página solicitada no ha sido encontrada.</p>
+    <ion-button color="primary" [routerLink]="['/home']">Ir al Inicio de Sesión</ion-button>
+  </div>
 </ion-content>
+
+<style>
+  .not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .not-found-image {
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 6rem;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+</style>

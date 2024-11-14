@@ -1,16 +1,19 @@
-.example-container mat-form-field + mat-form-field {
-  margin-left: 8px;
+/* Botones ajustados al tamaño de los campos de entrada */
+ion-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin-top: 15px;
+  width: 100%; /* Se asegura que ocupe el 100% del contenedor */
+  max-width: 400px; /* Opción para limitar el ancho en pantallas más grandes */
+  --border-radius: 8px; /* Bordes redondeados para un diseño consistente */
 }
 
-.example-right-align {
-  text-align: right;
+ion-button[color="primary"] {
+  --background: #007bff; /* Azul */
+  --color: #fff; /* Letra blanca */
 }
 
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-  display: none;
-}
-
-input.example-right-align {
-  -moz-appearance: textfield;
+ion-button[fill="outline"] {
+  --border-color: #007bff;
+  --color: #007bff;
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
+import { ApiService } from '../api.service'; // Servicio API
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ClasesComponent } from './clases.component';
 
 describe('ClasesComponent', () => {
@@ -10,7 +11,8 @@ describe('ClasesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ClasesComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule],
+      providers: [ ApiService ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ClasesComponent);
