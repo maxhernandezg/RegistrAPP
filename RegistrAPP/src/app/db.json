@@ -2,26 +2,298 @@
   "users": [
     {
       "id": "1",
-      "username": "docente",
+      "username": "br.soto",
       "password": "1234",
       "role": "docente",
-      "email": "docente@duocuc.cl",
-      "fullName": "Juan Pérez"
+      "email": "br.soto@duocuc.cl",
+      "fullName": "Bryan Soto"
     },
     {
       "id": "2",
-      "username": "alumno",
+      "username": "ma.cobo",
+      "password": "1234",
+      "role": "docente",
+      "email": "ma.cobo@duocuc.cl",
+      "fullName": "Maria Ignacia Cobo"
+    },
+    {
+      "id": "3",
+      "username": "max.hernandezg",
       "password": "1234",
       "role": "alumno",
-      "email": "alumno@duocuc.cl",
-      "fullName": "María González"
+      "email": "max.hernandezg@duocuc.cl",
+      "fullName": "Maximiliano Hernández",
+      "enrolledClasses": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    {
+      "id": "4",
+      "username": "jo.ferrada",
+      "password": "1234",
+      "role": "alumno",
+      "email": "jo.ferrada@duocuc.cl",
+      "fullName": "Joaquín Ferrada",
+      "enrolledClasses": [9, 10, 11, 12, 13]
     }
+  ],
+  "days": [
+    { "id": "1", "name": "Lunes" },
+    { "id": "2", "name": "Martes" },
+    { "id": "3", "name": "Miércoles" },
+    { "id": "4", "name": "Jueves" },
+    { "id": "5", "name": "Viernes" },
+    { "id": "6", "name": "Sábado" },
+    { "id": "7", "name": "Domingo" }
+  ],
+  "timeBlocks": [
+    { "id": "1", "startTime": "08:01", "endTime": "08:40" },
+    { "id": "2", "startTime": "08:41", "endTime": "09:20" },
+    { "id": "3", "startTime": "09:31", "endTime": "10:10" },
+    { "id": "4", "startTime": "10:11", "endTime": "10:50" },
+    { "id": "5", "startTime": "11:01", "endTime": "11:40" },
+    { "id": "6", "startTime": "11:41", "endTime": "12:20" },
+    { "id": "7", "startTime": "12:31", "endTime": "13:10" },
+    { "id": "8", "startTime": "13:11", "endTime": "13:50" },
+    { "id": "9", "startTime": "14:01", "endTime": "14:40" },
+    { "id": "10", "startTime": "14:41", "endTime": "15:20" },
+    { "id": "11", "startTime": "15:31", "endTime": "16:10" },
+    { "id": "12", "startTime": "16:11", "endTime": "16:50" },
+    { "id": "13", "startTime": "17:01", "endTime": "17:40" },
+    { "id": "14", "startTime": "17:41", "endTime": "18:20" }
+  ],
+  "classrooms": [
+    { "id": "1", "code": "VPB1-001", "name": "AULA MAGNA", "capacity": 160 },
+    { "id": "2", "code": "VPB1-002", "name": "TALLER CONSTRUCCIÓN", "capacity": 15 },
+    { "id": "3", "code": "VPB1-003", "name": "INSTALACIONES SANITARIAS", "capacity": 15 },
+    { "id": "4", "code": "VPB1-004", "name": "LABORATORIO ESPECIALIDADES", "capacity": 15 },
+    { "id": "5", "code": "VPB1-005", "name": "LABORATORIO HORMIGÓN Y MORTERO", "capacity": 15 },
+    { "id": "6", "code": "VPB1-007", "name": "LABORATORIO DE HIGIENE", "capacity": 24 },
+    { "id": "7", "code": "VPB1-008", "name": "SALA LECTURA B1", "capacity": 60 },
+    { "id": "8", "code": "VPB1-009", "name": "TALLER ESTUCO Y SUELO", "capacity": 20 },
+    { "id": "9", "code": "VPB1-010", "name": "TALLER INSTALACIONES ELÉCTRICAS", "capacity": 16 },
+    { "id": "10", "code": "VPB1-101", "name": "AUDITORIO", "capacity": 100 },
+    { "id": "11", "code": "VPB1-102", "name": "LABORATORIO COMPUTACIÓN", "capacity": 30 },
+    { "id": "12", "code": "VPB1-103", "name": "LABORATORIO COMPUTACIÓN", "capacity": 36 },
+    { "id": "13", "code": "VPB1-104", "name": "LABORATORIO INFORMÁTICA", "capacity": 40 },
+    { "id": "14", "code": "VPB1-105", "name": "LABORATORIO COMPUTACIÓN", "capacity": 40 },
+    { "id": "15", "code": "VPB1-106", "name": "LABORATORIO COMPUTACIÓN", "capacity": 40 },
+    { "id": "16", "code": "VPB1-108", "name": "LABORATORIO CIENCIAS BÁSICAS 1", "capacity": 30 },
+    { "id": "17", "code": "VPB1-109", "name": "LABORATORIO CIENCIAS BÁSICAS 2", "capacity": 35 },
+    { "id": "18", "code": "VPB1-204", "name": "LABORATORIO COMPUTACIÓN", "capacity": 30 },
+    { "id": "19", "code": "VPB1-206", "name": "LABORATORIO COMPUTACIÓN", "capacity": 40 },
+    { "id": "20", "code": "VPB1-207", "name": "LABORATORIO COMPUTACIÓN", "capacity": 40 },
+    { "id": "21", "code": "VPB1-208", "name": "SALA DE CLASES", "capacity": 25 },
+    { "id": "22", "code": "VPB1-209", "name": "SALA DE CLASES", "capacity": 25 },
+    { "id": "23", "code": "VPB1-210", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "24", "code": "VPB1-211", "name": "LABORATORIO COMPUTACIÓN", "capacity": 30 },
+    { "id": "25", "code": "VPB1-212", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "26", "code": "VPB1-213", "name": "SALA DE CLASES", "capacity": 30 },
+    { "id": "27", "code": "VPB1-214", "name": "SALA DE CLASES", "capacity": 40 },
+    { "id": "28", "code": "VPB1-215", "name": "SALA DE CLASES", "capacity": 46 },
+    { "id": "29", "code": "VPB1-216", "name": "SALA DE CLASES", "capacity": 46 },
+    { "id": "30", "code": "VPB1-217", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "31", "code": "VPB1-301", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "32", "code": "VPB1-302", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "33", "code": "VPB1-303", "name": "SALA DE CLASES", "capacity": 45 },
+    { "id": "34", "code": "VPB1-304", "name": "SALA DE CLASES", "capacity": 45 },
+    { "id": "35", "code": "VPB1-305", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "36", "code": "VPB1-306", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "37", "code": "VPB1-307", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "38", "code": "VPB1-308", "name": "CTS - PRIMEROS AUXILIOS", "capacity": 25 },
+    { "id": "39", "code": "VPB1-309", "name": "CTS - ANATOMÍA", "capacity": 25 },
+    { "id": "40", "code": "VPB1-310", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "41", "code": "VPB1-311", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "42", "code": "VPB1-312", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "43", "code": "VPB1-313", "name": "TALLER PREVENCIÓN", "capacity": 30 },
+    { "id": "44", "code": "VPB1-314", "name": "SALA DE CLASES", "capacity": 35 },
+    { "id": "45", "code": "VPB1-315", "name": "SALA DE CLASES", "capacity": 45 },
+    { "id": "46", "code": "VPB1-316", "name": "SALA DE CLASES", "capacity": 50 },
+    { "id": "47", "code": "VPB1-317", "name": "SALA DE CLASES", "capacity": 35 },
+    { "id": "48", "code": "VPB1-318", "name": "SALA DE CLASES", "capacity": 50 }
   ],
   "classes": [
     {
+      "id": "1",
+      "className": "Programación de Aplicaciones Móviles",
+      "teacherId": 1,
+      "classroomId": "14",
+      "schedule": [
+        {
+          "dayId": 1,
+          "timeBlockIds": [1, 2]
+        },
+        {
+          "dayId": 2,
+          "timeBlockIds": [1, 2]
+        }
+      ]
+    },
+    {
       "id": "2",
+      "className": "Estadística Descriptiva",
+      "teacherId": 1,
+      "classroomId": "15",
+      "schedule": [
+        {
+          "dayId": 1,
+          "timeBlockIds": [5, 6]
+        },
+        {
+          "dayId": 3,
+          "timeBlockIds": [5, 6]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "className": "Inglés Intermedio",
+      "teacherId": 1,
+      "classroomId": "10",
+      "schedule": [
+        {
+          "dayId": 1,
+          "timeBlockIds": [7, 8]
+        },
+        {
+          "dayId": 4,
+          "timeBlockIds": [1, 2]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "className": "Calidad de Software",
+      "teacherId": 1,
+      "classroomId": "13",
+      "schedule": [
+        {
+          "dayId": 1,
+          "timeBlockIds": [9, 10]
+        },
+        {
+          "dayId": 2,
+          "timeBlockIds": [9, 10]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "className": "Ética para el Trabajo",
+      "teacherId": 1,
+      "classroomId": "10",
+      "schedule": [
+        {
+          "dayId": 4,
+          "timeBlockIds": [11, 12]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "className": "Proceso de Portafolio Final",
+      "teacherId": 1,
+      "classroomId": "22",
+      "schedule": [
+        {
+          "dayId": 4,
+          "timeBlockIds": [5, 6]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "className": "Arquitectura",
+      "teacherId": 1,
+      "classroomId": "13",
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [4, 5]
+        },
+        {
+          "dayId": 4,
+          "timeBlockIds": [4, 5]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "className": "Mentalidad Emprendedora",
+      "teacherId": 2,
+      "classroomId": "10",
+      "schedule": [
+        {
+          "dayId": 1,
+          "timeBlockIds": [1, 2, 3]
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "className": "Programación de Base de Datos",
+      "teacherId": 2,
+      "classroomId": "13",
+      "schedule": [
+        {
+          "dayId": 2,
+          "timeBlockIds": [1, 2, 3]
+        },
+        {
+          "dayId": 5,
+          "timeBlockIds": [13, 14]
+        }
+      ]
+    },
+    {
+      "id": "10",
       "className": "Programación Web",
-      "teacherId": 1
+      "teacherId": 2,
+      "classroomId": "13",
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [4, 6, 13, 14]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "className": "Inglés Elemental",
+      "teacherId": 2,
+      "classroomId": "10",
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [5, 6, 7, 8]
+        },
+        {
+          "dayId": 4,
+          "timeBlockIds": [1, 2]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "className": "Ingeniería de Software",
+      "teacherId": 2,
+      "classroomId": "13",
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [7, 8]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "className": "Proceso de Portafolio Final",
+      "teacherId": 2,
+      "classroomId": "21",
+      "schedule": [
+        {
+          "dayId": 4,
+          "timeBlockIds": [5, 6]
+        }
+      ]
     }
   ],
   "attendance": []
