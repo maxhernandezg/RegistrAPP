@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     }
 
     if (!this.validateLongUsuario(this.login.username)) {
-      this.presentToast('El largo del usuario debe ser entre 3 y 8 caracteres');
+      this.presentToast('El largo del usuario debe ser entre 3 y 16 caracteres');
       this.login.username = '';
       return;
     }
@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
 
   // Validar longitud del nombre de usuario
   private validateLongUsuario(username: string): boolean {
-    return username.length >= 3 && username.length <= 8;
+    return username.length >= 3 && username.length <= 16;
   }
 
   // Validar longitud de la contraseña
