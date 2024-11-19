@@ -15,8 +15,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
 import { ClasesComponent } from './clases/clases.component';
+import { PerfilDocenteComponent } from './perfil-docente/perfil-docente.component'; // Ajusta la ruta
+import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component'; // Ajusta la ruta según tu estructura
+
 @NgModule({
-  declarations: [AppComponent, AbrircamaraComponent, AsistenciaComponent, ClasesComponent], // Declara los componentes que pertenecen al módulo
+  declarations: [AppComponent,
+                 AbrircamaraComponent,
+                 AsistenciaComponent, 
+                 ClasesComponent, 
+                 PerfilDocenteComponent,
+                 PerfilAlumnoComponent,], // Declara los componentes que pertenecen al módulo
   imports: [
     BrowserModule, 
     HttpClientModule, 

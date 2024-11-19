@@ -1,3 +1,33 @@
-<p>
-  perfil-docente works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil Docente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="docente">
+    <ion-card-header>
+      <ion-card-title>{{ docente.fullName }}</ion-card-title>
+      <ion-card-subtitle>Rol: {{ docente.role }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-text>{{ docente.email }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>ID de Usuario:</ion-label>
+        <ion-text>{{ docente.id }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!docente">
+    <ion-card-header>
+      <ion-card-title>No hay datos disponibles</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Parece que no hay datos del docente. Por favor, verifica tu sesión.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
