@@ -53,12 +53,15 @@ export class ApiService {
 
   // Obtener clases por enrolledClasses de un usuario
   getClassesByEnrolled(enrolledClasses: number[]): Observable<any[]> {
-    const ids = enrolledClasses.join(',');
-    const url = `${this.apiUrl}/classes?id=${ids}`;
+    const url = `${this.apiUrl}/classes?${enrolledClasses.map(id => `id=${id}`).join('&')}`;
+    console.log('URL generada:', url); // Debug para verificar la URL
     return this.http.get<any[]>(url).pipe(
       catchError((error) => this.handleError(error))
     );
   }
+  
+  
+  
 
   // Obtener asistencias por usuario
   getAttendanceByUser(userId: number): Observable<any[]> {

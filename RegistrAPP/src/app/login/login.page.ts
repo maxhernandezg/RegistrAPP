@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
     // Llamada al servicio API para iniciar sesión
     this.apiService.login(this.login.username, this.login.password).subscribe({
       next: (user) => this.handleLoginSuccess(user),
-      error: () => this.handleLoginError(),
+      error: (err) => this.handleLoginError(err),
     });
   }
 
@@ -55,20 +55,16 @@ export class LoginPage implements OnInit {
     this.authService.storeUser(user); // Guardar usuario
     this.authService.storeToken('auth-token'); // Guardar token
   
-    const navigationExtras: NavigationExtras = { state: { user } };
-  
-    // Ajuste para aceptar "alumno" como "student"
     if (user.role === 'docente') {
       console.log('Redirigiendo a docente-home'); // Log para seguimiento
-      this.router.navigate(['docente-home'], navigationExtras); // Redirigir a docente-home
+      this.router.navigate(['docente-home']); // Redirigir a docente-home
     } else if (user.role === 'alumno') {
       console.log('Redirigiendo a student-home'); // Log para seguimiento
-      this.router.navigate(['student-home'], navigationExtras); // Redirigir a student-home
+      this.router.navigate(['student-home']); // Redirigir a student-home
     } else if (user.role === 'admin') {
       console.log('Redirigiendo a admin-home'); // Log para seguimiento
-      this.router.navigate(['admin-home'], navigationExtras); // Redirigir a student-home
-    }
-     else {
+      this.router.navigate(['admin-home']); // Redirigir a admin-home
+    } else {
       console.log('Rol no permitido:', user.role); // Log del error
       this.presentToast(`Rol no permitido: ${user.role}`);
     }
@@ -76,10 +72,12 @@ export class LoginPage implements OnInit {
   
 
   // Manejo de error en inicio de sesión
-  private handleLoginError() {
-    this.presentToast('Usuario o contraseña incorrectos');
+  private handleLoginError(err: any) {
+    const errorMessage = err.error?.message || 'Usuario o contraseña incorrectos'; // Muestra el mensaje del backend si existe
+    this.presentToast(errorMessage);
     this.login.password = ''; // Limpiar el campo de contraseña
   }
+  
 
   // Validar el modelo del formulario
   private validateModel(model: any): boolean {

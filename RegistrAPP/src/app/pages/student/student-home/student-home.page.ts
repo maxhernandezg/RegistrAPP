@@ -15,16 +15,21 @@ export class StudentHomePage implements OnInit {
     private router: Router,
     private menu: MenuController,
     private authService: AuthService,
-    private toastController: ToastController // Para mostrar mensajes
-  ) {
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras?.state as { user: { fullName: string } };
-    if (state) {
-      this.userName = state.user.fullName;
-    }
+    private toastController: ToastController
+  ) {}
+  
+  ngOnInit() {
   }
 
-  ngOnInit() {}
+  ionViewWillEnter() {
+    const currentUser = this.authService.getCurrentUser(); // Obtiene el usuario actual
+    if (currentUser) {
+      this.userName = currentUser.fullName; // Asigna el nombre completo del usuario
+    } else {
+      this.userName = 'Estudiante'; // Valor predeterminado si no hay usuario
+    }
+  }
+  
 
   // Abre el menú lateral
   openMenu() {
@@ -39,7 +44,8 @@ export class StudentHomePage implements OnInit {
 
   // Cerrar sesión
   async logout() {
-    this.authService.logout();
+    this.authService.logout(); // Llama al método del servicio de autenticación
+    this.userName = 'Estudiante'; // Restablece el valor predeterminado
     const toast = await this.toastController.create({
       message: 'Sesión cerrada con éxito',
       duration: 2000,
