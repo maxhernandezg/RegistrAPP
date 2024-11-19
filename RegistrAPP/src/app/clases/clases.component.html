@@ -26,23 +26,25 @@
           </span>
         </p>
       </ion-label>
+      <!-- Botón para generar QR -->
+      <ion-button color="primary" (click)="generateQR(clase.id)">
+        Generar QR
+      </ion-button>
     </ion-item>
   </ion-list>
 
-  <!-- Actualizar Clase -->
-  <ion-card *ngIf="selectedClass">
+  <!-- Visualización del QR generado -->
+  <ion-card *ngIf="qrCodeData">
     <ion-card-header>
-      <ion-card-title>Actualizar Clase</ion-card-title>
+      <ion-card-title>Código QR Generado</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Nombre de la Clase</ion-label>
-        <ion-input [(ngModel)]="selectedClass.className"></ion-input>
-      </ion-item>
-      <ion-button expand="full" (click)="updateClass()">Guardar Cambios</ion-button>
-      <ion-button expand="full" color="medium" (click)="selectedClass = null">
-        Cancelar
-      </ion-button>
+    <ion-card-content class="ion-text-center">
+      <qrcode
+        [qrdata]="qrCodeData"
+        [width]="256"
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+      <p>{{ qrCodeData }}</p>
     </ion-card-content>
   </ion-card>
 

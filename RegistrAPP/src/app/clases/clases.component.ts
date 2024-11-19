@@ -16,6 +16,8 @@ export class ClasesComponent implements OnInit {
   newClass: any = { className: '', teacherId: null };
   teacherId: number | null = null;
   todayName: string = '';
+  
+  qrCodeData: string = ''; // Dato del QR generado
 
   constructor(
     private apiService: ApiService,
@@ -48,16 +50,16 @@ export class ClasesComponent implements OnInit {
   }
 
   filterClassesByToday() {
-  const todayIndex = new Date().getDay();
-  this.filteredClases = this.clases.filter((clase) =>
-    clase.schedule.some((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
-  );
-  this.filteredClases.forEach((clase) => {
-    clase.timeBlockIds = clase.schedule
-      .find((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)?.timeBlockIds || [];
-  });
-}
-
+    const todayIndex = new Date().getDay();
+    this.filteredClases = this.clases.filter((clase) =>
+      clase.schedule.some((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
+    );
+    this.filteredClases.forEach((clase) => {
+      clase.timeBlockIds =
+        clase.schedule.find((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
+          ?.timeBlockIds || [];
+    });
+  }
 
   initializeTeacherId() {
     const currentUser = this.authService.getCurrentUser();
@@ -91,7 +93,7 @@ export class ClasesComponent implements OnInit {
   loadClassrooms() {
     this.apiService.getClassrooms().subscribe({
       next: (classrooms) => {
-        this.classrooms = classrooms; // Almacena las aulas en la propiedad
+        this.classrooms = classrooms;
         this.filteredClases.forEach((clase) => {
           const classroom = this.classrooms.find((room) => room.id === clase.classroomId);
           clase.classroomCode = classroom ? classroom.code : 'Sin sala';
@@ -152,6 +154,16 @@ export class ClasesComponent implements OnInit {
         this.presentToast('Error al eliminar clase');
       },
     });
+  }
+
+  generateQR(classId: number) {
+    const attendanceData = {
+      classId: classId,
+      timestamp: new Date().toISOString(),
+      token: 'secureToken123', // Puedes cambiar esto por un token generado dinámicamente
+    };
+  
+    this.qrCodeData = JSON.stringify(attendanceData); // Almacena los datos del QR
   }
 
   async presentToast(message: string) {

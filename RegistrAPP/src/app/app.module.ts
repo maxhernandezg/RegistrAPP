@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AbrircamaraComponent } from './abrircamara/abrircamara.component';
 import { AsistenciaComponent } from './asistencia/asistencia.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { QRCodeModule } from 'angularx-qrcode'; // Importa el módulo
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
@@ -31,7 +31,8 @@ import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component';
     IonicModule.forRoot(),
     FormsModule, 
     AppRoutingModule, 
-    BrowserAnimationsModule // Agregado para soporte de animaciones
+    BrowserAnimationsModule, // Agregado para soporte de animaciones
+    QRCodeModule, // Agrega el módulo aquí
   ],
   providers: [
     ApiService, // Asegura que el servicio esté registrado como proveedor

@@ -717,5 +717,16 @@
       ]
     }
   ],
-  "attendance": []
+  "attendance": [
+    {
+      "id": "72c7",
+      "userId": "3",
+      "classId": "1"
+    },
+    {
+      "id": "0714",
+      "userId": "3",
+      "classId": "4"
+    }
+  ]
 }
