@@ -89,12 +89,20 @@ export class ApiService {
 
   // clases //
   // Obtener clases por ID del profesor
-getClassesByTeacher(teacherId: number): Observable<any[]> {
-  const url = `${this.apiUrl}/classes?teacherId=${teacherId}`;
-  return this.http.get<any[]>(url).pipe(
-    catchError((error) => this.handleError(error))
-  );
-}
+  getClassesByTeacher(teacherId: number): Observable<any[]> {
+    const url = `${this.apiUrl}/classes?teacherId=${teacherId}`;
+    console.log('URL generada para obtener clases del profesor:', url); // Depuración
+    return this.http.get<any[]>(url).pipe(
+      map((classes) => {
+        console.log('Clases filtradas por teacherId:', classes); // Verificar datos recibidos
+        return classes;
+      }),
+      catchError((error) => {
+        console.error('Error al obtener clases por teacherId:', error);
+        return this.handleError(error);
+      })
+    );
+  }
 updateClass(classId: number, updatedClass: any): Observable<any> {
   const url = `${this.apiUrl}/classes/${classId}`;
   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

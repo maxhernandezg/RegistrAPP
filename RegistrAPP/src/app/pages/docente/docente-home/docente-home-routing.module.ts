@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'asistencia',
+        redirectTo: 'clases',
         pathMatch: 'full',
       },
     ],

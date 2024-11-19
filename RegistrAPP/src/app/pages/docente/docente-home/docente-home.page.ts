@@ -25,6 +25,16 @@ export class DocenteHomePage implements OnInit {
   }
 
   ngOnInit() {}
+  
+  ionViewWillEnter() {
+    const currentUser = this.authService.getCurrentUser(); // Obtiene el usuario actual
+    if (currentUser) {
+      this.userName = currentUser.fullName; // Asigna el nombre completo del usuario
+    } else {
+      this.userName = 'Docente'; // Valor predeterminado si no hay usuario
+      console.warn('No se encontró un usuario autenticado.');
+    }
+  }
 
   // Abre el menú lateral
   openMenu() {
@@ -39,7 +49,8 @@ export class DocenteHomePage implements OnInit {
 
   // Cerrar sesión
   async logout() {
-    this.authService.logout();
+    this.authService.logout(); // Llama al método del servicio de autenticación
+    this.userName = 'Docente'; // Restablece el valor predeterminado
     const toast = await this.toastController.create({
       message: 'Sesión cerrada con éxito',
       duration: 2000,

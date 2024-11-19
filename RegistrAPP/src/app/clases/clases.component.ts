@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-clases',
@@ -10,24 +11,44 @@ import { ToastController } from '@ionic/angular';
 export class ClasesComponent implements OnInit {
   clases: any[] = []; // Lista de clases del profesor
   selectedClass: any = null; // Clase seleccionada para actualizar
-  newClass: any = { className: '', teacherId: 1 }; // Modelo para nueva clase
-  teacherId: number = 1; // Simula el ID del profesor logueado
+  newClass: any = { className: '', teacherId: null }; // Modelo para nueva clase
+  teacherId: number | null = null; // ID del profesor autenticado
 
   constructor(
     private apiService: ApiService,
+    private authService: AuthService,
     public toastController: ToastController
   ) {}
 
   ngOnInit() {
+    this.initializeTeacherId();
     this.loadClasses();
   }
 
+  // Obtiene el teacherId del usuario autenticado
+  initializeTeacherId() {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser && currentUser.role === 'docente') {
+      this.teacherId = Number(currentUser.id); // Asegúrate de que sea un número
+      this.newClass.teacherId = this.teacherId;
+    } else {
+      console.error('Usuario no autorizado o no es docente.');
+      this.presentToast('Acceso denegado: No tienes permisos para ver esta página.');
+    }
+  }
+  
+
   // Cargar las clases del profesor
   loadClasses() {
+    if (!this.teacherId) {
+      console.error('No se pudo cargar el teacherId del usuario.');
+      return;
+    }
+  
     this.apiService.getClassesByTeacher(this.teacherId).subscribe({
       next: (clases) => {
         this.clases = clases;
-        console.log('Clases cargadas:', clases);
+        console.log('Clases cargadas:', clases); // Verificar las clases
       },
       error: (error) => {
         console.error('Error al cargar clases:', error);
@@ -35,6 +56,7 @@ export class ClasesComponent implements OnInit {
       },
     });
   }
+  
 
   // Seleccionar una clase para actualizar
   selectClass(clase: any) {
