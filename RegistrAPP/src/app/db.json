@@ -30,18 +30,18 @@
         4,
         5,
         6,
-        7,
-        8
+        7
       ]
     },
     {
       "id": "4",
-      "username": "jo.ferrada",
+      "username": "joa.ferrada",
       "password": "1234",
       "role": "alumno",
-      "email": "jo.ferrada@duocuc.cl",
+      "email": "joa.ferrada@duocuc.cl",
       "fullName": "Joaquín Ferrada",
       "enrolledClasses": [
+        8,
         9,
         10,
         11,
@@ -460,7 +460,8 @@
           "dayId": 2,
           "timeBlockIds": [
             1,
-            2
+            2,
+            3
           ]
         }
       ]
@@ -481,8 +482,8 @@
         {
           "dayId": 3,
           "timeBlockIds": [
-            5,
-            6
+            4,
+            5
           ]
         }
       ]
@@ -498,6 +499,15 @@
           "timeBlockIds": [
             7,
             8
+          ]
+        },
+        {
+          "dayId": 3,
+          "timeBlockIds": [
+            7,
+            8,
+            9,
+            10
           ]
         },
         {
@@ -518,15 +528,15 @@
         {
           "dayId": 1,
           "timeBlockIds": [
-            9,
-            10
+            10,
+            11
           ]
         },
         {
           "dayId": 2,
           "timeBlockIds": [
-            9,
-            10
+            7,
+            8
           ]
         }
       ]
@@ -540,8 +550,8 @@
         {
           "dayId": 4,
           "timeBlockIds": [
-            11,
-            12
+            8,
+            9
           ]
         }
       ]
@@ -555,8 +565,8 @@
         {
           "dayId": 4,
           "timeBlockIds": [
-            5,
-            6
+            3,
+            4
           ]
         }
       ]
@@ -570,15 +580,16 @@
         {
           "dayId": 3,
           "timeBlockIds": [
-            4,
-            5
+            1,
+            2,
+            3
           ]
         },
         {
           "dayId": 4,
           "timeBlockIds": [
-            4,
-            5
+            5,
+            6
           ]
         }
       ]
@@ -590,7 +601,7 @@
       "classroomId": "10",
       "schedule": [
         {
-          "dayId": 1,
+          "dayId": 2,
           "timeBlockIds": [
             1,
             2,
@@ -606,18 +617,18 @@
       "classroomId": "13",
       "schedule": [
         {
-          "dayId": 2,
+          "dayId": 3,
+          "timeBlockIds": [
+            1,
+            2
+          ]
+        },
+        {
+          "dayId": 4,
           "timeBlockIds": [
             1,
             2,
             3
-          ]
-        },
-        {
-          "dayId": 5,
-          "timeBlockIds": [
-            13,
-            14
           ]
         }
       ]
@@ -629,10 +640,16 @@
       "classroomId": "13",
       "schedule": [
         {
-          "dayId": 3,
+          "dayId": 4,
           "timeBlockIds": [
             4,
-            6,
+            5
+          ]
+        },
+        {
+          "dayId": 5,
+          "timeBlockIds": [
+            12,
             13,
             14
           ]
@@ -646,19 +663,24 @@
       "classroomId": "10",
       "schedule": [
         {
-          "dayId": 3,
+          "dayId": 2,
           "timeBlockIds": [
             5,
-            6,
-            7,
-            8
+            6
+          ]
+        },
+        {
+          "dayId": 3,
+          "timeBlockIds": [
+            11,
+            12
           ]
         },
         {
           "dayId": 4,
           "timeBlockIds": [
-            1,
-            2
+            7,
+            8
           ]
         }
       ]
@@ -672,6 +694,7 @@
         {
           "dayId": 3,
           "timeBlockIds": [
+            6,
             7,
             8
           ]
@@ -680,15 +703,15 @@
     },
     {
       "id": "13",
-      "className": "Proceso de Portafolio Final",
+      "className": "Proceso de Portafolio 3",
       "teacherId": 2,
       "classroomId": "21",
       "schedule": [
         {
           "dayId": 4,
           "timeBlockIds": [
-            5,
-            6
+            11,
+            12
           ]
         }
       ]

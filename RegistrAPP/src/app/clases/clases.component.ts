@@ -9,10 +9,13 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./clases.component.scss'],
 })
 export class ClasesComponent implements OnInit {
-  clases: any[] = []; // Lista de clases del profesor
-  selectedClass: any = null; // Clase seleccionada para actualizar
-  newClass: any = { className: '', teacherId: null }; // Modelo para nueva clase
-  teacherId: number | null = null; // ID del profesor autenticado
+  clases: any[] = [];
+  filteredClases: any[] = [];
+  classrooms: any[] = [];
+  selectedClass: any = null;
+  newClass: any = { className: '', teacherId: null };
+  teacherId: number | null = null;
+  todayName: string = '';
 
   constructor(
     private apiService: ApiService,
@@ -23,32 +26,60 @@ export class ClasesComponent implements OnInit {
   ngOnInit() {
     this.initializeTeacherId();
     this.loadClasses();
+    this.loadClassrooms();
+    this.setTodayName();
   }
 
-  // Obtiene el teacherId del usuario autenticado
+  setTodayName() {
+    const days = [
+      'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado',
+    ];
+    const today = new Date();
+    this.todayName = days[today.getDay()];
+  }
+
+  getTimeBlock(blockId: number): string {
+    const block = this.apiService.getTimeBlockById(blockId);
+    return block ? `${block.startTime} - ${block.endTime}` : '';
+  }
+
+  isLastBlock(blockIds: number[], blockId: number): boolean {
+    return blockIds[blockIds.length - 1] === blockId;
+  }
+
+  filterClassesByToday() {
+  const todayIndex = new Date().getDay();
+  this.filteredClases = this.clases.filter((clase) =>
+    clase.schedule.some((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
+  );
+  this.filteredClases.forEach((clase) => {
+    clase.timeBlockIds = clase.schedule
+      .find((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)?.timeBlockIds || [];
+  });
+}
+
+
   initializeTeacherId() {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser && currentUser.role === 'docente') {
-      this.teacherId = Number(currentUser.id); // Asegúrate de que sea un número
+      this.teacherId = Number(currentUser.id);
       this.newClass.teacherId = this.teacherId;
     } else {
       console.error('Usuario no autorizado o no es docente.');
       this.presentToast('Acceso denegado: No tienes permisos para ver esta página.');
     }
   }
-  
 
-  // Cargar las clases del profesor
   loadClasses() {
     if (!this.teacherId) {
       console.error('No se pudo cargar el teacherId del usuario.');
       return;
     }
-  
+
     this.apiService.getClassesByTeacher(this.teacherId).subscribe({
       next: (clases) => {
         this.clases = clases;
-        console.log('Clases cargadas:', clases); // Verificar las clases
+        this.filterClassesByToday();
       },
       error: (error) => {
         console.error('Error al cargar clases:', error);
@@ -56,20 +87,33 @@ export class ClasesComponent implements OnInit {
       },
     });
   }
-  
 
-  // Seleccionar una clase para actualizar
-  selectClass(clase: any) {
-    this.selectedClass = { ...clase }; // Crear copia de la clase seleccionada
+  loadClassrooms() {
+    this.apiService.getClassrooms().subscribe({
+      next: (classrooms) => {
+        this.classrooms = classrooms; // Almacena las aulas en la propiedad
+        this.filteredClases.forEach((clase) => {
+          const classroom = this.classrooms.find((room) => room.id === clase.classroomId);
+          clase.classroomCode = classroom ? classroom.code : 'Sin sala';
+        });
+      },
+      error: (error) => {
+        console.error('Error al cargar aulas:', error);
+        this.presentToast('Error al cargar aulas');
+      },
+    });
   }
 
-  // Actualizar clase existente
+  selectClass(clase: any) {
+    this.selectedClass = { ...clase };
+  }
+
   updateClass() {
     this.apiService.updateClass(this.selectedClass.id, this.selectedClass).subscribe({
       next: () => {
         this.presentToast('Clase actualizada exitosamente');
         this.loadClasses();
-        this.selectedClass = null; // Limpiar selección
+        this.selectedClass = null;
       },
       error: (error) => {
         console.error('Error al actualizar clase:', error);
@@ -78,7 +122,6 @@ export class ClasesComponent implements OnInit {
     });
   }
 
-  // Crear nueva clase
   createClass() {
     if (this.newClass.className.trim() === '') {
       this.presentToast('El nombre de la clase no puede estar vacío');
@@ -98,7 +141,6 @@ export class ClasesComponent implements OnInit {
     });
   }
 
-  // Eliminar clase y sus asistencias
   deleteClass(clase: any) {
     this.apiService.deleteClassWithAttendance(clase.id).subscribe({
       next: () => {
@@ -112,7 +154,6 @@ export class ClasesComponent implements OnInit {
     });
   }
 
-  // Mostrar notificación
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

@@ -5,14 +5,31 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Mostrar el día de hoy arriba de todo -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Día de Hoy: {{ todayName }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Lista de clases -->
   <ion-list>
-    <ion-item *ngFor="let clase of clases">
-      <ion-label>{{ clase.className }}</ion-label>
-      <ion-button (click)="selectClass(clase)">Actualizar</ion-button>
-      <ion-button color="danger" (click)="deleteClass(clase)">Eliminar</ion-button>
+    <ion-item *ngFor="let clase of filteredClases">
+      <ion-label>
+        <h2>{{ clase.className }}</h2>
+        <p>Sala: {{ clase.classroomCode }}</p>
+        <p>
+          Bloques Horarios: 
+          <span *ngFor="let blockId of clase.timeBlockIds">
+            {{ getTimeBlock(blockId) }}
+            <span *ngIf="!isLastBlock(clase.timeBlockIds, blockId)">, </span>
+          </span>
+        </p>
+      </ion-label>
     </ion-item>
   </ion-list>
 
+  <!-- Actualizar Clase -->
   <ion-card *ngIf="selectedClass">
     <ion-card-header>
       <ion-card-title>Actualizar Clase</ion-card-title>
@@ -29,6 +46,7 @@
     </ion-card-content>
   </ion-card>
 
+  <!-- Crear Nueva Clase -->
   <ion-card>
     <ion-card-header>
       <ion-card-title>Crear Nueva Clase</ion-card-title>

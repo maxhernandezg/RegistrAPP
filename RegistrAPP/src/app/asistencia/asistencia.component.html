@@ -5,12 +5,25 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Día de Hoy: {{ todayName }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
   <ion-list>
-    <ion-item *ngFor="let clase of clases">
+    <ion-item *ngFor="let clase of filteredClases">
       <ion-label>
-        <h6 class="ion-text-center">{{ clase.className }}</h6>
+        <h2>{{ clase.className }}</h2>
+        <p>Sala: {{ clase.classroomCode }}</p>
+        <p>Horarios:
+          <span *ngFor="let blockId of clase.timeBlockIds">
+            {{ getTimeBlock(blockId) }}
+            <span *ngIf="!isLastBlock(clase.timeBlockIds, blockId)">, </span>
+          </span>
+        </p>
       </ion-label>
-      
+
       <ion-button
         *ngIf="!attendedClasses.has(clase.id)"
         (click)="registerAttendance(clase.id)"
@@ -24,14 +37,6 @@
         disabled
       >
         Registrado
-      </ion-button>
-
-      <ion-button
-        *ngIf="attendedClasses.has(clase.id)"
-        color="danger"
-        (click)="deleteAttendance(clase.id)"
-      >
-        Eliminar Asistencia
       </ion-button>
     </ion-item>
   </ion-list>

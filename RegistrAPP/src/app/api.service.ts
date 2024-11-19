@@ -43,6 +43,16 @@ export class ApiService {
     );
   }
 
+  getTimeBlocks(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/timeBlocks`).pipe(
+      catchError((error) => {
+        console.error('Error al obtener bloques horarios:', error);
+        throw error;
+      })
+    );
+  }
+  
+
   // Registrar asistencia
   registerAttendance(attendance: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -88,6 +98,12 @@ export class ApiService {
   }
 
   // clases //
+
+  getClassrooms(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/classrooms`).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
   // Obtener clases por ID del profesor
   getClassesByTeacher(teacherId: number): Observable<any[]> {
     const url = `${this.apiUrl}/classes?teacherId=${teacherId}`;
@@ -133,4 +149,26 @@ deleteClassWithAttendance(classId: number): Observable<any> {
     })
   );
 }
+
+getTimeBlockById(id: number): any {
+  const timeBlocks = [
+    { id: 1, startTime: '08:01', endTime: '08:40' },
+    { id: 2, startTime: '08:41', endTime: '09:20' },
+    { id: 3, startTime: '09:31', endTime: '10:10' },
+    { id: 4, startTime: '10:11', endTime: '10:50' },
+    { id: 5, startTime: '11:01', endTime: '11:40' },
+    { id: 6, startTime: '11:41', endTime: '12:20' },
+    { id: 7, startTime: '12:31', endTime: '13:10' },
+    { id: 8, startTime: '13:11', endTime: '13:50' },
+    { id: 9, startTime: '14:01', endTime: '14:40' },
+    { id: 10, startTime: '14:41', endTime: '15:20' },
+    { id: 11, startTime: '15:31', endTime: '16:10' },
+    { id: 12, startTime: '16:11', endTime: '16:50' },
+    { id: 13, startTime: '17:01', endTime: '17:40' },
+    { id: 14, startTime: '17:41', endTime: '18:20' },
+  ];
+  return timeBlocks.find((block) => block.id === id);
+}
+
+
 }
