@@ -26,6 +26,14 @@ export class ApiService {
     );
   }
 
+  // Obtener un usuario por ID
+  getUserById(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/users/${userId}`;
+    return this.http.get<any>(url).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
+
   // ASISTENCIA //
 
   // Obtener todas las clases
@@ -39,6 +47,15 @@ export class ApiService {
   registerAttendance(attendance: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.apiUrl}/attendance`, attendance, { headers }).pipe(
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  // Obtener clases por enrolledClasses de un usuario
+  getClassesByEnrolled(enrolledClasses: number[]): Observable<any[]> {
+    const ids = enrolledClasses.join(',');
+    const url = `${this.apiUrl}/classes?id=${ids}`;
+    return this.http.get<any[]>(url).pipe(
       catchError((error) => this.handleError(error))
     );
   }

@@ -38,6 +38,10 @@ export class AuthService {
     return !!token;
   }
 
+  logout(): void {
+    this.removeToken(); // Borra el token y los datos del usuario
+  }
+
   // Eliminar el token y el usuario del almacenamiento local
   removeToken(): void {
     localStorage.removeItem(this.authTokenKey);

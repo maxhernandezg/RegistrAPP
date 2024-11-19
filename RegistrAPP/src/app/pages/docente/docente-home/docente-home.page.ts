@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular'; // Importa MenuController
+import { MenuController, ToastController } from '@ionic/angular';
+import { AuthService } from '../../../auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-docente-home',
@@ -10,7 +11,12 @@ import { MenuController } from '@ionic/angular'; // Importa MenuController
 export class DocenteHomePage implements OnInit {
   userName: string = 'Docente';
 
-  constructor(private router: Router, private menu: MenuController) { // Añade MenuController al constructor
+  constructor(
+    private router: Router,
+    private menu: MenuController,
+    private authService: AuthService,
+    private toastController: ToastController // Para mostrar mensajes
+  ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as { user: { fullName: string } };
     if (state) {
@@ -20,13 +26,26 @@ export class DocenteHomePage implements OnInit {
 
   ngOnInit() {}
 
-  // Método para abrir el menú lateral
+  // Abre el menú lateral
   openMenu() {
-    this.menu.open('end'); // Asegúrate de que 'end' coincide con la configuración del menú
+    this.menu.open('end');
   }
 
+  // Cambia el segmento seleccionado
   segmentChanged(event: any) {
     const selectedSegment = event.detail.value;
     this.router.navigate([`/docente-home/${selectedSegment}`]);
+  }
+
+  // Cerrar sesión
+  async logout() {
+    this.authService.logout();
+    const toast = await this.toastController.create({
+      message: 'Sesión cerrada con éxito',
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
+    this.router.navigate(['/login']); // Redirige al inicio de sesión
   }
 }
