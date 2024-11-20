@@ -26,9 +26,10 @@
 
       <ion-button
         *ngIf="!attendedClasses.has(clase.id)"
-        (click)="registerAttendance(clase.id)"
+        color="danger"
+        disabled
       >
-        Asistir
+        No Registrado
       </ion-button>
 
       <ion-button

@@ -1,10 +1,14 @@
-<ion-content class="ion-text-center ion-padding">
-  <ion-button  (click)="takePicture()">
-    Tomar Foto
-  </ion-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escanear Código QR</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <div *ngIf="imageUrl" class="ion-margin-top">
-    <h6>Imágen capturada</h6>
-    <img [src]="imageUrl" alt="Imagen Capturada" />
+<ion-content class="ion-padding">
+  <div id="reader" style="width: 100%;"></div>
+
+  <div *ngIf="scanResult" class="ion-margin-top">
+    <h2>Resultado del QR:</h2>
+    <p>{{ scanResult }}</p>
   </div>
 </ion-content>
