@@ -13,9 +13,9 @@
 
   <!-- Lista de clases -->
   <ion-list>
-    <ion-item *ngFor="let clase of filteredClases">
-      <ion-label>
-        <h2>{{ clase.className }}</h2>
+    <ion-item *ngFor="let clase of filteredClases" color="light">
+      <ion-label color="secondary">
+        <p style="font-size: 20px;"><strong>{{ clase.className }}</strong></p>
         <p>Sala: {{ clase.classroomCode }}</p>
         <p>
           Bloques Horarios: 
@@ -26,19 +26,20 @@
         </p>
       </ion-label>
       <!-- Botón para generar QR -->
-      <ion-button color="primary" (click)="generateQR(clase.id)">
-        Generar QR
+      <ion-button color="secondary" (click)="generateQR(clase.id)">
+        <p style="color:white; padding-top:10px;">Generar QR</p>
       </ion-button>
     </ion-item>
   </ion-list>
 
   <!-- Visualización del QR generado -->
-  <ion-card *ngIf="qrCodeData">
+  <ion-card *ngIf="qrCodeData" color="secondary" >
     <ion-card-header>
-      <ion-card-title>Código QR Generado</ion-card-title>
+      <ion-card-title><p style="color:white;">Código QR Generado</p></ion-card-title>
     </ion-card-header>
-    <ion-card-content class="ion-text-center">
+    <ion-card-content class="ion-text-center" style="color:#ffffff;">
       <qrcode
+        [colorDark]="'#833050'"
         [qrdata]="qrCodeData"
         [width]="256"
         [errorCorrectionLevel]="'M'">
