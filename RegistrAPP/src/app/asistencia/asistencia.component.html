@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Asistencia a Clases</ion-title>
+  <ion-toolbar color="light">
+    <ion-title style="--color: #833050;">Asistencia a Clases</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
+<ion-content class="ion-padding ion-text-center" color="light">
+  <ion-card  color="secondary">
     <ion-card-header>
-      <ion-card-title>Día de Hoy: {{ todayName }}</ion-card-title>
+      <ion-card-title style="font-size: 15px; color:white;">Día de Hoy: {{ todayName }}</ion-card-title>
     </ion-card-header>
   </ion-card>
 
   <ion-list>
-    <ion-item *ngFor="let clase of filteredClases">
-      <ion-label>
-        <h2>{{ clase.className }}</h2>
+    <ion-item *ngFor="let clase of filteredClases" color="light">
+      <ion-label color="secondary">
+        <p style="font-size: 20px;"><strong>{{ clase.className }}</strong></p>
         <p>Sala: {{ clase.classroomCode }}</p>
         <p>Horarios:
           <span *ngFor="let blockId of clase.timeBlockIds">

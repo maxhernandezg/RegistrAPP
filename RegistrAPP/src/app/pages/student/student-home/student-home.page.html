@@ -1,28 +1,36 @@
 <ion-app>
   <!-- Menú lateral para iniciar sesión -->
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="start" content-id="main-content" color="light">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>RegistrAPP</ion-title>
+      <ion-toolbar color="light">
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <ion-img src="assets/logo3registrapp.png" style="width: 200px; height: auto; padding-top:10px; padding-bottom:10px;"></ion-img>
+        </div>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <!-- Botón para iniciar sesión en el menú lateral -->
-      <ion-button expand="full" (click)="logout()">Cerrar sesión</ion-button>
-
+    
+    <ion-content  class="ion-text-center" color="light">
+      <ion-button color="secondary" shape="round"(click)="logout()" style="padding-top:20px;">Cerrar sesión</ion-button>
     </ion-content>
   </ion-menu>
 
   <!-- Contenido principal de la aplicación -->
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
       <ion-buttons slot="start">
         <!-- Botón para abrir el menú -->
         <ion-button (click)="openMenu()">
-          <ion-icon name="menu"></ion-icon>
+          <ion-icon name="menu" color="light"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title class="ion-text-center">Bienvenido/a, {{ userName }}</ion-title>
+      <ion-title class="ion-text-center" color="light" style="font-size: 15px;">
+        <div>
+          Bienvenido/a
+        </div>
+      <div>
+        {{ userName }}
+      </div>
+    </ion-title>
     </ion-toolbar>
   </ion-header>
 
