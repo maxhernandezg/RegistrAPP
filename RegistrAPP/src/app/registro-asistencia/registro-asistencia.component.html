@@ -1,3 +1,30 @@
-<p>
-  registro-asistencia works!
-</p>
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title color="secondary">Registro de Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center" color="light">
+
+  <ion-card *ngIf="qrCodeData" color="secondary">
+    <ion-card-header>
+      <ion-card-title>
+        <p style="color:white;">Código QR Generado</p>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center" style="color:#833050;">
+      <qrcode
+        [colorDark]="'#833050'"
+        [qrdata]="qrCodeData"
+        [width]="256"
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+      <p>{{ qrCodeData }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!qrCodeData" color="secondary">
+    <p>No se ha generado QR</p>
+  </ion-card>
+
+</ion-content>

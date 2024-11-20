@@ -715,13 +715,43 @@
           ]
         }
       ]
-    }   
+    },
+    {
+      "id": "0134",
+      "className": "Programación Orientada a Objetos",
+      "teacherId": 2,
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "dayId": 4,
+          "timeBlockIds": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "classroomId": "13"
+    }
   ],
   "attendance": [
     {
       "id": "2c05",
       "classId": "8",
       "timestamp": "2024-11-20T00:26:39.075Z",
+      "token": "secureToken123"
+    },
+    {
+      "id": "b815",
+      "classId": "2",
+      "timestamp": "2024-11-20T03:03:08.655Z",
       "token": "secureToken123"
     }
   ]

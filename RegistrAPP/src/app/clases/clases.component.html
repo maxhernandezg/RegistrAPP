@@ -1,24 +1,25 @@
 <ion-header>
   <ion-toolbar color="light">
-    <ion-title color="secondary">Clases del Profesor</ion-title>
+    <ion-title color="secondary">Clases del Día de Hoy</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center" color="light">
-  <ion-card  color="secondary">
+  <ion-card color="secondary">
     <ion-card-header>
-      <ion-card-title style="font-size: 15px; color:white;">Día de Hoy: {{ todayName }}</ion-card-title>
+      <ion-card-title style="font-size: 15px; color: white;">
+        Día de Hoy: {{ todayName }}
+      </ion-card-title>
     </ion-card-header>
   </ion-card>
 
-  <!-- Lista de clases -->
+  <!-- Lista de clases filtradas -->
   <ion-list>
     <ion-item *ngFor="let clase of filteredClases" color="light">
       <ion-label color="secondary">
         <p style="font-size: 20px;"><strong>{{ clase.className }}</strong></p>
         <p>Sala: {{ clase.classroomCode }}</p>
-        <p>
-          Bloques Horarios: 
+        <p>Horarios:
           <span *ngFor="let blockId of clase.timeBlockIds">
             {{ getTimeBlock(blockId) }}
             <span *ngIf="!isLastBlock(clase.timeBlockIds, blockId)">, </span>
@@ -27,26 +28,10 @@
       </ion-label>
       <!-- Botón para generar QR -->
       <ion-button color="secondary" (click)="generateQR(clase.id)">
-        <p style="color:white; padding-top:10px;">Generar QR</p>
+        <p style="color: white;">Generar QR</p>
       </ion-button>
     </ion-item>
   </ion-list>
-
-  <!-- Visualización del QR generado -->
-  <ion-card *ngIf="qrCodeData" color="secondary" >
-    <ion-card-header>
-      <ion-card-title><p style="color:white;">Código QR Generado</p></ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center" style="color:#833050;">
-      <qrcode
-        [colorDark]="'#833050'"
-        [qrdata]="qrCodeData"
-        [width]="256"
-        [errorCorrectionLevel]="'M'">
-      </qrcode>
-      <p>{{ qrCodeData }}</p>
-    </ion-card-content>
-  </ion-card>
 
   <!-- Crear Nueva Clase -->
   <ion-content color="light">
@@ -54,15 +39,50 @@
       <ion-list-header color="light">
         <ion-label color="secondary">Crear Nueva Clase</ion-label>
       </ion-list-header>
+
+      <!-- Nombre de la clase -->
       <ion-item color="light">
         <ion-label position="stacked" color="secondary"><strong>Nombre de la Clase</strong></ion-label>
         <div>
-          <ion-input  style="color:#833050;" placeholder="Ingresa la Clase" [(ngModel)]="newClass.className"></ion-input>
-        </div>
-        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-          <ion-button color="secondary" shape="round"(click)="createClass()" style="padding-top:20px;">
-            <p style="color: white; padding-top: 12px;">Crear Clase</p></ion-button>
+          <ion-input
+            style="color:#833050;"
+            placeholder="Ingresa el nombre de la clase"
+            [(ngModel)]="newClass.className"
+          ></ion-input>
         </div>
       </ion-item>
+
+      <!-- Selección de sala -->
+      <ion-item color="light">
+        <ion-label position="stacked" color="secondary"><strong>Sala</strong></ion-label>
+        <ion-select [(ngModel)]="newClass.classroomId" style="color:#833050;">
+          <ion-select-option *ngFor="let classroom of classrooms" [value]="classroom.id">
+            {{ classroom.code }} - {{ classroom.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Selección de días y bloques horarios -->
+      <ion-item *ngFor="let day of availableDays" color="light">
+        <ion-label position="stacked" color="secondary"><strong>{{ day.name }}</strong></ion-label>
+        <ion-select
+          [(ngModel)]="schedule[day.id]"
+          multiple="true"
+          style="color:#833050;"
+          placeholder="Selecciona bloques horarios"
+        >
+          <ion-select-option *ngFor="let block of timeBlocks" [value]="block.id">
+            {{ block.startTime }} - {{ block.endTime }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Botón para crear la clase -->
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <ion-button color="secondary" shape="round" (click)="createClass()" style="padding-top: 20px;">
+          <p style="color: white; padding-top: 12px;">Crear Clase</p>
+        </ion-button>
+      </div>
     </ion-list>
   </ion-content>
+</ion-content>

@@ -42,15 +42,15 @@ export class ApiService {
       catchError((error) => this.handleError(error))
     );
   }
-
-  getTimeBlocks(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/timeBlocks`).pipe(
-      catchError((error) => {
-        console.error('Error al obtener bloques horarios:', error);
-        throw error;
-      })
-    );
-  }
+// Obtener bloques horarios
+getTimeBlocks(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/timeBlocks`).pipe(
+    catchError((error) => {
+      console.error('Error al obtener bloques horarios:', error);
+      throw error;
+    })
+  );
+}
   
 
   // Registrar asistencia
@@ -98,6 +98,18 @@ export class ApiService {
   }
 
   // clases //
+
+  // Obtener días
+getDays(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/days`).pipe(
+    catchError((error) => {
+      console.error('Error al obtener días:', error);
+      throw error;
+    })
+  );
+}
+
+// Obtener bloques horarios
 
   getClassrooms(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/classrooms`).pipe(

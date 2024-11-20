@@ -17,6 +17,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ClasesComponent } from './clases/clases.component';
 import { PerfilDocenteComponent } from './perfil-docente/perfil-docente.component'; // Ajusta la ruta
 import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component'; // Ajusta la ruta según tu estructura
+import { RegistroAsistenciaComponent } from './registro-asistencia/registro-asistencia.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -24,7 +25,8 @@ import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component';
                  AsistenciaComponent, 
                  ClasesComponent, 
                  PerfilDocenteComponent,
-                 PerfilAlumnoComponent,], // Declara los componentes que pertenecen al módulo
+                 PerfilAlumnoComponent,
+                 RegistroAsistenciaComponent], // Declara los componentes que pertenecen al módulo
   imports: [
     BrowserModule, 
     HttpClientModule, 

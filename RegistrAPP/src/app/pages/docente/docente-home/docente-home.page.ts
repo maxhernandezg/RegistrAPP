@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
-import { AuthService } from '../../../auth.service'; // Asegúrate de que la ruta sea correcta
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-docente-home',
@@ -10,12 +10,13 @@ import { AuthService } from '../../../auth.service'; // Asegúrate de que la rut
 })
 export class DocenteHomePage implements OnInit {
   userName: string = 'Docente';
+  currentSegment: string = 'clases'; // Controla el segmento activo
 
   constructor(
     private router: Router,
     private menu: MenuController,
     private authService: AuthService,
-    private toastController: ToastController // Para mostrar mensajes
+    private toastController: ToastController
   ) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as { user: { fullName: string } };
@@ -25,38 +26,35 @@ export class DocenteHomePage implements OnInit {
   }
 
   ngOnInit() {}
-  
+
   ionViewWillEnter() {
-    const currentUser = this.authService.getCurrentUser(); // Obtiene el usuario actual
+    const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
-      this.userName = currentUser.fullName; // Asigna el nombre completo del usuario
+      this.userName = currentUser.fullName;
     } else {
-      this.userName = 'Docente'; // Valor predeterminado si no hay usuario
-      console.warn('No se encontró un usuario autenticado.');
+      this.userName = 'Docente';
     }
   }
 
-  // Abre el menú lateral
   openMenu() {
     this.menu.open('end');
   }
 
-  // Cambia el segmento seleccionado
   segmentChanged(event: any) {
-    const selectedSegment = event.detail.value;
+    const selectedSegment = event.detail?.value || event;
+    this.currentSegment = selectedSegment;
     this.router.navigate([`/docente-home/${selectedSegment}`]);
   }
 
-  // Cerrar sesión
   async logout() {
-    this.authService.logout(); // Llama al método del servicio de autenticación
-    this.userName = 'Docente'; // Restablece el valor predeterminado
+    this.authService.logout();
+    this.userName = 'Docente';
     const toast = await this.toastController.create({
       message: 'Sesión cerrada con éxito',
       duration: 2000,
       position: 'bottom',
     });
     toast.present();
-    this.router.navigate(['/login']); // Redirige al inicio de sesión
+    this.router.navigate(['/login']);
   }
 }
