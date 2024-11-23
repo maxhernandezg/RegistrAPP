@@ -5,7 +5,7 @@
   
   <!-- Texto de Bienvenida -->
   <div class="ion-padding-vertical ion-text-center">
-    <p class="dark-text" style="padding-top:30px;">¡Qué gusto tenerte de vuelta!</p>
+    <p style="padding-top:30px; color:#833050;">¡Qué gusto tenerte de vuelta!</p>
   </div>
 
  <!-- Contenedor para centrar y alinear los botones con los inputs -->
@@ -14,7 +14,7 @@
     <ion-list>
       <!-- Campo de Usuario -->
       <ion-item>
-        <ion-input
+        <ion-input style="color:#833050;"
           label="Usuario"
           labelPlacement="stacked"
           [clearOnEdit]="true"
@@ -25,7 +25,7 @@
 
       <!-- Campo de Contraseña -->
       <ion-item>
-        <ion-input
+        <ion-input style="color:#833050;"
           label="Contraseña"
           labelPlacement="stacked"
           type="password"
@@ -39,11 +39,13 @@
   <!-- Botón de Inicio de Sesión -->
   <div class="ion-text-center">
     <ion-button color="secondary" shape="round" (click)="ingresar()" >
-      Iniciar Sesión
+      <p style="color: white; padding-top: 12px;">
+        <strong>Iniciar Sesión</strong></p>
     </ion-button>
   </div>
   <div class="ion-text-center">
-    <ion-button color="secondary" shape="round" fill="outline">
+    <ion-button color="secondary" shape="round" fill="outline"
+     [routerLink]="['/reset-password']">
       ¿Olvidaste tu contraseña?
     </ion-button>
   </div>

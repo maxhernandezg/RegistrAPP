@@ -1,14 +1,13 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Clases del Profesor</ion-title>
+  <ion-toolbar color="light">
+    <ion-title color="secondary">Clases del Profesor</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <!-- Mostrar el día de hoy arriba de todo -->
-  <ion-card>
+<ion-content class="ion-padding ion-text-center" color="light">
+  <ion-card  color="secondary">
     <ion-card-header>
-      <ion-card-title>Día de Hoy: {{ todayName }}</ion-card-title>
+      <ion-card-title style="font-size: 15px; color:white;">Día de Hoy: {{ todayName }}</ion-card-title>
     </ion-card-header>
   </ion-card>
 
@@ -49,16 +48,20 @@
   </ion-card>
 
   <!-- Crear Nueva Clase -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Crear Nueva Clase</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Nombre de la Clase</ion-label>
-        <ion-input [(ngModel)]="newClass.className"></ion-input>
+  <ion-content color="light">
+    <ion-list>
+      <ion-list-header color="light">
+        <ion-label color="secondary">Crear Nueva Clase</ion-label>
+      </ion-list-header>
+      <ion-item color="light">
+        <ion-label position="stacked" color="secondary"><strong>Nombre de la Clase</strong></ion-label>
+        <div>
+          <ion-input  style="color:#833050;" placeholder="Ingresa la Clase" [(ngModel)]="newClass.className"></ion-input>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <ion-button color="secondary" shape="round"(click)="createClass()" style="padding-top:20px;">
+            <p style="color: white; padding-top: 12px;">Crear Clase</p></ion-button>
+        </div>
       </ion-item>
-      <ion-button expand="full" (click)="createClass()">Crear Clase</ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+    </ion-list>
+  </ion-content>

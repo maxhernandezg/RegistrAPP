@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { ApiService } from '../api.service';
 
+
 @Component({
   selector: 'app-abrircamara',
   templateUrl: './abrircamara.component.html',
