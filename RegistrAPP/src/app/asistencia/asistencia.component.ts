@@ -27,6 +27,9 @@ export class AsistenciaComponent implements OnInit {
     this.loadAttendance();
     this.loadClassrooms();
     this.loadTimeBlocks();
+    this.authService.attendanceUpdated.subscribe(() => {
+      this.loadAttendance();
+    });
   }
 
   
