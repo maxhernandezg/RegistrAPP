@@ -8,7 +8,6 @@
         </div>
       </ion-toolbar>
     </ion-header>
-    
     <ion-content  class="ion-text-center" color="light">
       <ion-button color="secondary" shape="round"(click)="logout()" style="padding-top:20px;">Cerrar sesión</ion-button>
     </ion-content>
@@ -34,20 +33,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content id="main-content">
+  <ion-content id="main-content" color="light">
     <!-- Segmento de botones -->
     <ion-segment value="asistencia" (ionChange)="segmentChanged($event)" slot="fixed">
       <ion-segment-button value="asistencia">
-        <ion-icon name="book-outline"></ion-icon>
+        <ion-icon name="book-outline" color="secondary"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="abrircamara">
-        <ion-icon name="camera-outline"></ion-icon>
+        <ion-icon name="camera-outline"color="secondary"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="perfil-alumno">
-        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-icon name="person-circle-outline"color="secondary"></ion-icon>
       </ion-segment-button>
     </ion-segment>
-
     <!-- Aquí cargamos las rutas dinámicamente en función de las selecciones del segmento -->
     <ion-router-outlet style="margin-top: 40px;"></ion-router-outlet>
   </ion-content>

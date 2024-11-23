@@ -55,3 +55,5 @@ export class StudentHomePage implements OnInit {
     this.router.navigate(['/login']); // Redirige al inicio de sesión
   }
 }
+
+
