@@ -739,20 +739,34 @@
         }
       ],
       "classroomId": "13"
-    }
-  ],
-  "attendance": [
-    {
-      "id": "2c05",
-      "classId": "8",
-      "timestamp": "2024-11-20T00:26:39.075Z",
-      "token": "secureToken123"
     },
     {
-      "id": "b815",
-      "classId": "2",
-      "timestamp": "2024-11-20T03:03:08.655Z",
-      "token": "secureToken123"
+      "id": "f8e7",
+      "className": "Progra web",
+      "teacherId": 1,
+      "schedule": [
+        {
+          "dayId": 0,
+          "timeBlockIds": [
+            7
+          ]
+        }
+      ],
+      "classroomId": "1"
+    },
+    {
+      "id": "f9f3",
+      "className": "jkladsjklasd",
+      "teacherId": 1,
+      "schedule": [
+        {
+          "dayId": 3,
+          "timeBlockIds": [
+            4
+          ]
+        }
+      ],
+      "classroomId": "4"
     }
   ]
 }
