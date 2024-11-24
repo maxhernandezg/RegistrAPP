@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private authTokenKey = 'authToken';
   private currentUserKey = 'currentUser'; // Nueva clave para guardar el usuario actual
+  attendanceUpdated = new EventEmitter<void>();
 
   constructor() {}
 

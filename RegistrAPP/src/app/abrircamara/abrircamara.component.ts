@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service'; // Asegúrate de importar el AuthService
 
 
 @Component({
@@ -11,10 +12,12 @@ import { ApiService } from '../api.service';
 export class AbrircamaraComponent implements OnInit {
   scanResult: string | null = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private authService: AuthService) {}
 
   ngOnInit(): void {
+    
     this.startScanner();
+    
   }
 
   startScanner() {
@@ -51,6 +54,7 @@ export class AbrircamaraComponent implements OnInit {
         next: () => {
           console.log('Asistencia registrada correctamente');
           alert('Asistencia registrada exitosamente');
+          this.authService.attendanceUpdated.emit(); // Emitir evento de actualización de asistencia
         },
         error: (error) => {
           console.error('Error al registrar asistencia: ', error);

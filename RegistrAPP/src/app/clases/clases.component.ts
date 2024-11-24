@@ -49,16 +49,22 @@ export class ClasesComponent implements OnInit {
     return blockIds[blockIds.length - 1] === blockId;
   }
 
-  filterClassesByToday() {
-    const todayIndex = new Date().getDay();
-    this.filteredClases = this.clases.filter((clase) =>
-      clase.schedule.some((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
-    );
-    this.filteredClases.forEach((clase) => {
-      clase.timeBlockIds =
-        clase.schedule.find((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
-          ?.timeBlockIds || [];
-    });
+  // filterClassesByToday() {
+  //   const todayIndex = new Date().getDay();
+  //   this.filteredClases = this.clases.filter((clase) =>
+  //     clase.schedule.some((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
+  //   );
+  //   this.filteredClases.forEach((clase) => {
+  //     clase.timeBlockIds =
+  //       clase.schedule.find((sched: { dayId: number; timeBlockIds: number[] }) => sched.dayId === todayIndex)
+  //         ?.timeBlockIds || [];
+  //   });
+  // }
+
+  // BORRAR ESTA FUNCION DESPUES
+  // Nueva función para cargar todas las clases sin filtrar
+  loadAllClasses() {
+    this.filteredClases = this.clases;
   }
 
   initializeTeacherId() {
@@ -81,7 +87,10 @@ export class ClasesComponent implements OnInit {
     this.apiService.getClassesByTeacher(this.teacherId).subscribe({
       next: (clases) => {
         this.clases = clases;
-        this.filterClassesByToday();
+        // this.filterClassesByToday(); // Comentado para no filtrar por día
+        
+        // BORRAR ESTA FUNCION DESPUES
+        this.loadAllClasses(); // Cargar todas las clases sin filtrar
       },
       error: (error) => {
         console.error('Error al cargar clases:', error);
