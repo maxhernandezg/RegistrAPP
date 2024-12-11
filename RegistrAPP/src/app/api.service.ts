@@ -22,7 +22,7 @@ export class ApiService {
   // LOGIN //
   login(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/users?username=${username}&password=${password}`;
-    return this.http.get<any[]>(url, this.httpOptions).pipe(
+    return this.http.get<any[]>(url, {headers: this.httpOptions.headers}).pipe(
       map((users) => {
         if (users.length > 0) {
           return users[0]; // Retorna el primer usuario encontrado
@@ -37,7 +37,7 @@ export class ApiService {
   // Obtener un usuario por ID
   getUserById(userId: number): Observable<any> {
     const url = `${this.apiUrl}/users/${userId}`;
-    return this.http.get<any>(url, this.httpOptions).pipe(
+    return this.http.get<any>(url, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
@@ -46,14 +46,14 @@ export class ApiService {
 
   // Obtener todas las clases
   getClasses(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/classes`, this.httpOptions).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/classes`, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
 
   // Obtener bloques horarios
   getTimeBlocks(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/timeBlocks`, this.httpOptions).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/timeBlocks`, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => {
         console.error('Error al obtener bloques horarios:', error);
         throw error;
@@ -63,7 +63,7 @@ export class ApiService {
 
   // Registrar asistencia
   registerAttendance(attendance: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/attendance`, attendance, this.httpOptions).pipe(
+    return this.http.post<any>(`${this.apiUrl}/attendance`, attendance, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
@@ -72,14 +72,14 @@ export class ApiService {
   getClassesByEnrolled(enrolledClasses: number[]): Observable<any[]> {
     const url = `${this.apiUrl}/classes?${enrolledClasses.map((id) => `id=${id}`).join('&')}`;
     console.log('URL generada:', url); // Debug para verificar la URL
-    return this.http.get<any[]>(url, this.httpOptions).pipe(
+    return this.http.get<any[]>(url, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
 
   // Obtener asistencias por usuario
   getAttendanceByUser(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance?userId=${userId}`, this.httpOptions).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/attendance?userId=${userId}`, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
@@ -88,7 +88,7 @@ export class ApiService {
   deleteAttendance(id: string): Observable<any> {
     const url = `${this.apiUrl}/attendance/${id}`;
     console.log('URL de eliminación de asistencia:', url); // Debug
-    return this.http.delete<any>(url, this.httpOptions).pipe(
+    return this.http.delete<any>(url, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => {
         console.error('Error al eliminar asistencia:', error);
         return throwError(() => new Error('Error al eliminar asistencia'));
@@ -106,7 +106,7 @@ export class ApiService {
 
   // Obtener días
   getDays(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/days`, this.httpOptions).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/days`, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => {
         console.error('Error al obtener días:', error);
         throw error;
@@ -116,7 +116,7 @@ export class ApiService {
 
   // Obtener aulas
   getClassrooms(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/classrooms`, this.httpOptions).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/classrooms`, {headers: this.httpOptions.headers}).pipe(
       catchError((error) => this.handleError(error))
     );
   }
@@ -125,7 +125,7 @@ export class ApiService {
   getClassesByTeacher(teacherId: number): Observable<any[]> {
     const url = `${this.apiUrl}/classes?teacherId=${teacherId}`;
     console.log('URL generada para obtener clases del profesor:', url); // Depuración
-    return this.http.get<any[]>(url, this.httpOptions).pipe(
+    return this.http.get<any[]>(url, {headers: this.httpOptions.headers}).pipe(
       map((classes) => {
         console.log('Clases filtradas por teacherId:', classes); // Verificar datos recibidos
         return classes;
