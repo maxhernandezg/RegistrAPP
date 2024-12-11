@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'https://b8b029b2-fffc-4ba8-bbcb-0e0e82f04a6a-00-323f589cfr1yr.janeway.replit.dev'; // Base URL del JSON Server
+  private apiUrl = 'https://c5d221d1-16cd-488f-bcc7-0c33e0470d36-00-16s3kkfehbs6e.worf.replit.dev'; // Base URL del JSON Server
 
   // Opciones de encabezados para las peticiones HTTP
   httpOptions = {
