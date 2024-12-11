@@ -11,34 +11,34 @@
     </ion-card-header>
   </ion-card>
 <!-- Lista de clases -->
-  <ion-list>
-    <ion-item *ngFor="let clase of filteredClases" color="light">
-      <ion-label color="secondary">
-        <p style="font-size: 20px;"><strong>{{ clase.className }}</strong></p>
-        <p>Sala: {{ clase.classroomCode }}</p>
-        <p>Horarios:
-          <span *ngFor="let blockId of clase.timeBlockIds">
-            {{ getTimeBlock(blockId) }}
-            <span *ngIf="!isLastBlock(clase.timeBlockIds, blockId)">, </span>
-          </span>
-        </p>
-      </ion-label>
+<ion-list>
+  <ion-item *ngFor="let clase of filteredClases" color="light">
+    <ion-label color="secondary">
+      <p style="font-size: 20px;"><strong>{{ clase.className }}</strong></p>
+      <p>Sala: {{ clase.classroomCode }}</p>
+      <p>Horarios:
+        <span *ngFor="let blockId of clase.timeBlockIds">
+          {{ getTimeBlock(blockId) }}
+          <span *ngIf="!isLastBlock(clase.timeBlockIds, blockId)">, </span>
+        </span>
+      </p>
+    </ion-label>
 
-      <ion-button
-        *ngIf="!attendedClasses.has(clase.id)"
-        color="danger"
-        disabled
-      >
-        No Registrado
-      </ion-button>
+    <ion-button
+      *ngIf="!attendedClasses.has(clase.id)"
+      color="danger"
+      disabled
+    >
+      No Registrado
+    </ion-button>
 
-      <ion-button
-        *ngIf="attendedClasses.has(clase.id)"
-        color="success"
-        disabled
-      >
-        Registrado
-      </ion-button>
-    </ion-item>
-  </ion-list>
+    <ion-button
+      *ngIf="attendedClasses.has(clase.id)"
+      color="success"
+      disabled
+    >
+      Registrado
+    </ion-button>
+  </ion-item>
+</ion-list>
 </ion-content>
