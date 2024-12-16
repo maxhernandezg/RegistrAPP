@@ -1,53 +1,81 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
-import { ToastController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.page.html',
   styleUrls: ['./reset-password.page.scss'],
 })
-export class ResetPasswordPage {
-  email: string = '';
-  currentPassword: string = '';
-  newPassword: string = '';
-  hidePassword: boolean = true; // Para alternar visibilidad de la contraseña actual
-  hideNewPassword: boolean = true; // Para alternar visibilidad de la nueva contraseña
+export class ResetPasswordPage implements OnInit {
+   // Modelo user que permite obtener y setear información para el login
+   resetPassword:any={
+    Password:"",
+    ConfirmPassword:""
+  }
+  // variable para mostrar el campo faltante
+  field:string="";
+  hide: boolean = true; // Para manejar la visibilidad de la contraseña
+  // Constructor que llama al toastController para su uso
+  constructor(public toastController: ToastController, private router:Router) {}
+  ngOnInit() {}
 
-  constructor(
-    private apiService: ApiService,
-    private toastController: ToastController
-  ) {}
-
-  updatePassword() {
-    if (!this.email || !this.currentPassword || !this.newPassword) {
-      this.presentToast('Por favor, completa todos los campos.');
-      return;
+  cambioContrasena(){
+    if(this.validateModel(this.resetPassword)){
+      this.router.navigate(['login']);
+      this.presentToast("Restablecimiento exitoso!");
+    }
+  }
+  /**
+   * validateModel sirve para validar que se ingrese algo en los
+   * campos del html mediante su modelo
+   */
+  validateModel(model:any){
+    // Recorro todas las entradas que me entrega Object entries y obtengo su clave, valor
+    for (var [key, value] of Object.entries(model)) {
+      // Si un valor es "" se retornara false y se avisara de lo faltante
+      if (value=="") {
+        // Se asigna el campo faltante
+        this.field=key;
+        this.presentToast("Falta: "+this.field);
+        // Se retorna false
+        return false;
+      }
     }
 
-    // Buscar el usuario por email
-    this.apiService.getUserByEmail(this.email).subscribe({
-      next: (user) => {
-        if (user.password === this.currentPassword) {
-          // Actualizar la contraseña
-          const updatedUser = { ...user, password: this.newPassword };
-          this.apiService.updateUserPassword(user.id, updatedUser).subscribe({
-            next: () => this.presentToast('Contraseña actualizada exitosamente.'),
-            error: () => this.presentToast('Error al actualizar la contraseña.'),
-          });
-        } else {
-          this.presentToast('La contraseña actual es incorrecta.');
-        }
-      },
-      error: () => this.presentToast('El correo electrónico no existe.'),
-    });
+    if (this.resetPassword.Password != this.resetPassword.ConfirmPassword){
+      this.presentToast("Las contraseñas no coinciden.");
+      return false;
+    }
+
+    return true;
   }
 
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-    });
+  // validateLongUsuario(dato:String){
+  //   if(dato.length>=3 && dato.length<=8){
+  //     return true
+  //   }
+  //   return false;
+  // }
+  // validateLongPass(dato:String){
+  //   if(dato.length==4 && Number.isInteger(Number(dato))){
+  //     return true;
+  //   }
+  //   return false;
+  // }
+  /**
+   * Muestra un toast al usuario
+   * @param message Mensaje a presentar al usuario
+   * @param duration Duración el toast, este es opcional
+   */
+  async presentToast(message:string, duration?:number){
+    const toast = await this.toastController.create(
+      {
+        message:message,
+        duration:duration?duration:2000
+      }
+    );
     toast.present();
   }
 }
+
