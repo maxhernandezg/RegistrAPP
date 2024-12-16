@@ -178,5 +178,32 @@ export class ApiService {
       catchError((error) => this.handleError(error))
     );
   }
+
+  // RESTABLECER CONTRASEÑA //
+
+  getUserByEmail(email: string): Observable<any> {
+    const url = `${this.apiUrl}/users?email=${email}`;
+    return this.http.get<any[]>(url).pipe(
+      map((users) => {
+        if (users.length > 0) return users[0]; // Retorna el primer usuario encontrado
+        else throw new Error('Usuario no encontrado');
+      }),
+      catchError((error) => {
+        console.error('Error al obtener usuario por email:', error);
+        return throwError(() => new Error('Usuario no encontrado'));
+      })
+    );
+  }
+  
+  updateUserPassword(userId: number, updatedUser: any): Observable<any> {
+    const url = `${this.apiUrl}/users/${userId}`;
+    return this.http.put(url, updatedUser, this.httpOptions).pipe(
+      catchError((error) => {
+        console.error('Error al actualizar la contraseña:', error);
+        return throwError(() => new Error('Error al actualizar la contraseña'));
+      })
+    );
+  }
+  
   
 }
