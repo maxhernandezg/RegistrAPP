@@ -2,46 +2,43 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QRCodeModule } from 'angularx-qrcode';
-
-// Servicios y Componentes
+// Importar ApiService (asegúrate que la ruta sea correcta)
 import { ApiService } from './api.service';
+
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AbrircamaraComponent } from './abrircamara/abrircamara.component';
 import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { AppRoutingModule } from './app-routing.module';
+import { QRCodeModule } from 'angularx-qrcode'; // Importa el módulo
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import correcto para animaciones
 import { ClasesComponent } from './clases/clases.component';
-import { PerfilDocenteComponent } from './perfil-docente/perfil-docente.component';
-import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component';
+import { PerfilDocenteComponent } from './perfil-docente/perfil-docente.component'; // Ajusta la ruta
+import { PerfilAlumnoComponent } from './perfil-alumno/perfil-alumno.component'; // Ajusta la ruta según tu estructura
 import { RegistroAsistenciaComponent } from './registro-asistencia/registro-asistencia.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AbrircamaraComponent,
-    AsistenciaComponent,
-    ClasesComponent,
-    PerfilDocenteComponent,
-    PerfilAlumnoComponent,
-    RegistroAsistenciaComponent,
-  ],
+  declarations: [AppComponent,
+                 AbrircamaraComponent,
+                 AsistenciaComponent, 
+                 ClasesComponent, 
+                 PerfilDocenteComponent,
+                 PerfilAlumnoComponent,
+                 RegistroAsistenciaComponent], // Declara los componentes que pertenecen al módulo
   imports: [
-    BrowserModule,
-    HttpClientModule,
+    BrowserModule, 
+    HttpClientModule, 
     IonicModule.forRoot(),
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    QRCodeModule, // Modulo para QR codes
+    FormsModule, 
+    AppRoutingModule, 
+    BrowserAnimationsModule, // Agregado para soporte de animaciones
+    QRCodeModule, // Agrega el módulo aquí
   ],
   providers: [
-    ApiService, // Proveedor del servicio API
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, // Estrategia de reutilización de rutas específica de Ionic
-    { provide: LocationStrategy, useClass: HashLocationStrategy }, // Soporte para HashLocationStrategy
+    ApiService, // Asegura que el servicio esté registrado como proveedor
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync() // Reutilización de rutas específica de Ionic
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent], // Componente raíz que se carga al inicio
